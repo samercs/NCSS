@@ -16,32 +16,35 @@
                     <h4 class="inTitles"><a href="/Phenomenon.aspx"><%=new Lang().getByKey("Phenomenons") %> </a>> <%#Eval("title") %></h4>
                     <img class="img-responsive PhoDatailsImg" src="/images/SocialEvent/<%#Eval("img") %>" />
                     <%#Eval("txt") %>
-
+                    
                     <h1>المرفقات
                     </h1>
-                    <asp:Repeater ID="Repeater4" runat="server">
-                        <ItemTemplate>
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <a href="/images/SocialEventDoc/<%#Eval("Url") %>">
-                                        <div class="DocRight">
-                                            <img src="images/icon1.png" class="img img-responsive" />
-                                        </div>
-                                        <div class="DocLeft">
-                                            <h5>
-                                                <%#Eval("name") %>
-                                            </h5>
-                                            <img src="images/download.png" />
-                                            <span><%= new Lang().getByKey("Download") %></span>
+                    <div class="row">
+                        <asp:Repeater ID="Repeater4" runat="server">
+                            <ItemTemplate>
+                                <div class="col-md-6">
+                                    
+                                        <a href="/images/SocialEventDoc/<%#Eval("Url") %>">
+                                            <div class="DocRight">
+                                                <img src="images/icon1.png" class="img img-responsive" />
+                                            </div>
+                                            <div class="DocLeft">
+                                                <h5>
+                                                    <%#Eval("name") %>
+                                                </h5>
+                                                <img src="images/download.png" />
+                                                <span><%= new Lang().getByKey("Download") %></span>
 
-                                        </div>
-                                        <div class="clear"></div>
-                                    </a>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </a>
+                                    
                                 </div>
-                            </div>
-                        </ItemTemplate>
-                    </asp:Repeater>
+                            </ItemTemplate>
+                        </asp:Repeater>
                     </div>
+                    
+                    
                     
 
                     <h4><%=new Lang().getByKey("Share") %></h4>
