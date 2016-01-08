@@ -35,6 +35,7 @@
                                             <span><%= new Lang().getByKey("Download") %></span>
 
                                         </div>
+                                        <div class="clear"></div>
                                     </a>
                                 </div>
                             </div>
