@@ -48,6 +48,7 @@ public partial class Admin_ResearchOp : System.Web.UI.Page
         txtTitle.Text = ds.Tables[0].Rows[0]["title"].ToString();
         ddlResearcher.SelectedValue = ds.Tables[0].Rows[0]["ResearcherId"].ToString();
         txtAddDate.Text = _dates.GregToHijri(DateTime.Parse(ds.Tables[0].Rows[0]["AddDate"].ToString()).ToString("d/M/yyyy"));
+        txtPublishDate.Text = _dates.GregToHijri(DateTime.Parse(ds.Tables[0].Rows[0]["PublishDate"].ToString()).ToString("d/M/yyyy"));
         ddlLang.SelectedValue = ds.Tables[0].Rows[0]["lang"].ToString();
         ViewState["file"] = ds.Tables[0].Rows[0]["file"].ToString();
 
@@ -72,10 +73,15 @@ public partial class Admin_ResearchOp : System.Web.UI.Page
             return;
         }
         
-        DateTime tmp;
+        DateTime tmp,tmp2;
         if (!DateTime.TryParseExact(_dates.HijriToGreg(txtAddDate.Text,"dd/MM/yyyy"), "d/M/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out tmp))
         {
             ScriptManager.RegisterStartupScript(this, this.GetType(), "WriteMsg", "<SCRIPT LANGUAGE=\"JavaScript\">alertify.error(\"الرجاء التأكد من التاريخ\")</SCRIPT>", false);
+            return;
+        }
+        if (!DateTime.TryParseExact(_dates.HijriToGreg(txtPublishDate.Text, "dd/MM/yyyy"), "d/M/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out tmp2))
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "WriteMsg", "<SCRIPT LANGUAGE=\"JavaScript\">alertify.error(\"الرجاء التأكد من التاريخ النشر\")</SCRIPT>", false);
             return;
         }
 
@@ -109,6 +115,7 @@ public partial class Admin_ResearchOp : System.Web.UI.Page
         db.AddParameter("@ResearcherId", ddlResearcher.SelectedValue);
         db.AddParameter("@lang", ddlLang.SelectedValue);
         db.AddParameter("@AddDate", tmp);
+        db.AddParameter("@PublishDate", tmp2);
         db.AddParameter("@file", ViewState["file"].ToString());
 
 
@@ -118,7 +125,7 @@ public partial class Admin_ResearchOp : System.Web.UI.Page
             try
             {
                 db.AddParameter("@id", Request.QueryString["id"]);
-                db.ExecuteNonQuery("Update " + tablename + " Set title=@title,[File]=@file,lang=@lang,ResearcherId=@ResearcherId,AddDate=@addDate where Id=@id");
+                db.ExecuteNonQuery("Update " + tablename + " Set title=@title,[File]=@file,lang=@lang,ResearcherId=@ResearcherId,AddDate=@addDate,publishDate=@publishDate where Id=@id");
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "WriteMsg", "alertify.alert('تم التعديل ','تم التعديل بنجاح').set('onok', function(closeEvent){ location.href='ResearchList.aspx?id="+ddlResearcher.SelectedValue+"'; } );", true);
             }
 
@@ -130,7 +137,7 @@ public partial class Admin_ResearchOp : System.Web.UI.Page
         }
         else if (Request.QueryString["Op"] == "Add")
         {
-            db.ExecuteNonQuery("Insert into " + tablename + "(Title,[File],lang,ResearcherId,AddDate) Values(@Title,@File,@lang,@ResearcherId,@AddDate)");
+            db.ExecuteNonQuery("Insert into " + tablename + "(Title,[File],lang,ResearcherId,AddDate,PublishDate) Values(@Title,@File,@lang,@ResearcherId,@AddDate,@PublishDate)");
             ScriptManager.RegisterStartupScript(this, this.GetType(), "WriteMsg", "alertify.alert('تم الاضافة ','تم الاضافة بنجاح').set('onok', function(closeEvent){ location.href='ResearchList.aspx?id=" + ddlResearcher.SelectedValue + "'; } );", true);
         }
     }

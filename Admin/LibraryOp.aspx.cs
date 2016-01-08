@@ -40,6 +40,7 @@ public partial class Admin_ExpertiseOp : System.Web.UI.Page
         txtTitle.Text = ds.Tables[0].Rows[0]["title"].ToString();
         txtWriter.Text = ds.Tables[0].Rows[0]["writer"].ToString();
         txtAddDate.Text =  datets.GregToHijri(DateTime.Parse(ds.Tables[0].Rows[0]["AddDate"].ToString()).ToString("d/M/yyyy"),"d/M/yyyy");
+        txtPublishDate.Text = datets.GregToHijri(DateTime.Parse(ds.Tables[0].Rows[0]["PublishDate"].ToString()).ToString("d/M/yyyy"), "d/M/yyyy");
         ddlLang.SelectedValue = ds.Tables[0].Rows[0]["lang"].ToString();
         ddlType.SelectedValue = ds.Tables[0].Rows[0]["type"].ToString();
         ViewState["file"] = ds.Tables[0].Rows[0]["file"].ToString();
@@ -69,11 +70,17 @@ public partial class Admin_ExpertiseOp : System.Web.UI.Page
             ScriptManager.RegisterStartupScript(this, this.GetType(), "WriteMsg", "<SCRIPT LANGUAGE=\"JavaScript\">alertify.error(\"الرجاء اختيار التصنيف\")</SCRIPT>", false);
             return;
         }
-        DateTime tmp;
-        
+        DateTime tmp,tmp2;
+
+        if (!DateTime.TryParseExact(datets.HijriToGreg(txtPublishDate.Text, "d/M/yyyy"), "d/M/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out tmp2))
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "WriteMsg", "<SCRIPT LANGUAGE=\"JavaScript\">alertify.error(\"الرجاء التأكد من التاريخ النشر\")</SCRIPT>", false);
+            return;
+        }
+
         if (!DateTime.TryParseExact(datets.HijriToGreg(txtAddDate.Text, "d/M/yyyy"), "d/M/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out tmp))
         {
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "WriteMsg", "<SCRIPT LANGUAGE=\"JavaScript\">alertify.error(\"الرجاء التأكد من التاريخ\")</SCRIPT>", false);
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "WriteMsg", "<SCRIPT LANGUAGE=\"JavaScript\">alertify.error(\"الرجاء التأكد من التاريخ الاضافة\")</SCRIPT>", false);
             return;
         }
 
@@ -109,6 +116,7 @@ public partial class Admin_ExpertiseOp : System.Web.UI.Page
         db.AddParameter("@lang", ddlLang.SelectedValue);
         db.AddParameter("@Type", ddlType.SelectedValue);
         db.AddParameter("@AddDate",tmp );
+        db.AddParameter("@PublishDate", tmp2);
         db.AddParameter("@file", ViewState["file"].ToString());
 
 
@@ -118,7 +126,7 @@ public partial class Admin_ExpertiseOp : System.Web.UI.Page
             try
             {
                 db.AddParameter("@id", Request.QueryString["id"]);
-                db.ExecuteNonQuery("Update " + tablename + " Set title=@title,[Type]=@Type,[File]=@file,lang=@lang,Writer=@writer,AddDate=@addDate where Id=@id");
+                db.ExecuteNonQuery("Update " + tablename + " Set title=@title,[Type]=@Type,[File]=@file,lang=@lang,Writer=@writer,AddDate=@addDate,PublishDate=@PublishDate where Id=@id");
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "WriteMsg", "alertify.alert('تم التعديل ','تم التعديل بنجاح').set('onok', function(closeEvent){ location.href='" + listpage+"'; } );", true);
 
                 
@@ -133,7 +141,7 @@ public partial class Admin_ExpertiseOp : System.Web.UI.Page
         }
         else if (Request.QueryString["Op"] == "Add")
         {
-            db.ExecuteNonQuery("Insert into " + tablename + "(Title,[Type],[File],lang,Writer,AddDate) Values(@Title,@Type,@File,@lang,@Writer,@AddDate)");
+            db.ExecuteNonQuery("Insert into " + tablename + "(Title,[Type],[File],lang,Writer,AddDate,publishDate) Values(@Title,@Type,@File,@lang,@Writer,@AddDate,@publishDate)");
             ScriptManager.RegisterStartupScript(this, this.GetType(), "WriteMsg", "alertify.alert('تم الاضافة ','تم الاضافة بنجاح').set('onok', function(closeEvent){ location.href='" + listpage + "'; } );", true);
         }
     }

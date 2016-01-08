@@ -18,7 +18,7 @@
         <div class="fl">
             <asp:Repeater ID="Repeater2" runat="server">
                 <ItemTemplate>
-                    <a class="example-image-link" href="/images/Albums/<%#Eval("img") %>" data-lightbox="example-set" data-title="<%#Eval("title") %>"><img class=" SingleAboutImage img-responsive example-image" src="/images/albums/<%#Eval("img") %>" alt=""/></a>
+                    <a class="example-image-link" href="/images/images/<%#Eval("Src") %>" data-lightbox="example-set" data-title="<%#Eval("alt") %>"><img class=" SingleAboutImage img-responsive example-image" src="/images/images/<%#Eval("src") %>" alt=""/></a>
                 </ItemTemplate>
             </asp:Repeater>
         </div>

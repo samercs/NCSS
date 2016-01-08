@@ -28,6 +28,7 @@
                     
                     <th>اللغة</th>
                     <th>ترتيب العرض</th>
+                    <th>الرابط</th>
                     <th></th>
                 </tr>
                 <asp:ListView ID="RepeaterLists" OnPagePropertiesChanged="ListView1_PagePropertiesChanged" ItemPlaceholderID="iph" runat="server">
@@ -63,6 +64,9 @@
                             </td>
                             <td>
                                 <%#Eval("ShowOrder")%>
+                            </td>
+                            <td>
+                                <a href="<%#Eval("Url")%>"><%#Eval("Url")%></a> 
                             </td>
                             <td>
                                 <asp:LinkButton CssClass="btnDelete" ID="btnDelete" OnCommand="btnDelete_Command" CommandName='<%#Eval("img") %>' CommandArgument='<%#Eval("id") %>' runat="server"><i class="fa fa-trash fs20px"></i> حذف</asp:LinkButton>

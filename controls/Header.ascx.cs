@@ -33,9 +33,14 @@ public partial class controls_Header : System.Web.UI.UserControl
                 btnChangeLang.Text= lang.getByKey("Arabic");
             }
 
-            DataSet ds = db.ExecuteDataSet(researchTypeSql);
-            Repeater1.DataSource = ds.Tables[0];
-            Repeater1.DataBind();
+            string aboutPageSql =
+                "select pages.* from pageImages inner join pages on (pageImages.pageId=pages.id) where pageImages.ImageId is null and pages.lang=@lang";
+
+            DataSet ds = db.ExecuteDataSet(researchTypeSql+";"+aboutPageSql);
+            ListView1.DataSource = ds.Tables[1];
+            ListView1.DataBind();
+
+
 
             string pageName = System.IO.Path.GetFileName(Request.PhysicalPath).ToLower();
             switch (pageName)

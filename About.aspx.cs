@@ -15,16 +15,17 @@ public partial class About : UICaltureBase
             Database db=new Database();
             Lang lang=new Lang();
 
-            string albumsSql = "select top(4) * from albums where lang=@lang order by showOrder";
-            string aboutSql = "select  * from pages where pagekey=@key and lang=@lang";
+            string albumsSql = "select images.* from PageImages inner join images on (PageImages.imageId=images.id and PageImages.PageId=@id) where images.lang=@lang order by images.ImgKey";
+            string aboutSql = "select  * from pages where id=@id and lang=@lang";
             db.AddParameter("@lang", lang.getCurrentLang());
-            if (Request.QueryString["page"] != null)
+            if (Request.QueryString["id"] != null)
             {
-                db.AddParameter("@key", Request.QueryString["page"]);    
+                db.AddParameter("@id", Request.QueryString["id"]);    
             }
             else
             {
-                db.AddParameter("@key", "HomeAbout");
+                aboutSql = "select  * from pages where PageKey=@PageKey and lang=@lang";
+                db.AddParameter("@PageKey", "HomeAbout");
             }
             
             DataSet ds = db.ExecuteDataSet(aboutSql+";"+albumsSql);

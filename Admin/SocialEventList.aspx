@@ -26,7 +26,7 @@
                     <th>الصورة</th>
                     <th>العنوان</th>
                     <th>اللغة</th>
-                    
+                    <th>المرفقات</th>
                     <th></th>
                 </tr>
                 <asp:ListView ID="RepeaterLists" OnPagePropertiesChanged="ListView1_PagePropertiesChanged" ItemPlaceholderID="iph" runat="server">
@@ -60,7 +60,11 @@
                             <td>
                                 <%#Eval("lang").ToString().Equals("1") ? "انجليزي" : "عربي" %>
                             </td>
-                           
+                           <td>
+                               <a href="SocialEventDocList.aspx?id=<%#Eval("id") %>">
+                                   المرفقات
+                               </a>
+                           </td>
                             <td>
                                 <asp:LinkButton CssClass="btnDelete" ID="btnDelete" OnCommand="btnDelete_Command" CommandName='<%#Eval("img") %>' CommandArgument='<%#Eval("id") %>' runat="server"><i class="fa fa-trash fs20px"></i> حذف</asp:LinkButton>
                                 <asp:LinkButton ID="btnEdit" OnCommand="btnEdit_Command" CommandArgument='<%#Eval("id") %>' runat="server"><i class="fa fa-pencil-square-o fs20px"></i> تعديل</asp:LinkButton>

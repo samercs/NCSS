@@ -27,6 +27,17 @@
 
             </div>
         </a>
+        <a href="AboutPagesList.aspx">
+            <div class="item">
+                <div class="clear sp20" "></div>
+                <i class="fa fa-file-text-o fa-4x"></i>
+                <br />
+                <p>
+                    صفحات عن المركز
+                </p>
+
+            </div>
+        </a>
         <a href="LabelList.aspx">
             <div class="item">
                 <div class="clear sp20"></div>

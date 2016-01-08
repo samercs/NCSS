@@ -1466,7 +1466,15 @@ header .container{ position :relative;}
 
 
 
-
+    .LoginIcon {
+            
+            margin-right: 0.3em;
+            float: left;
+            top: 15px;
+            text-align: center;
+            width:200px;
+            
+        }
 
     .SocialIcons {
         margin-right: 0.3em;

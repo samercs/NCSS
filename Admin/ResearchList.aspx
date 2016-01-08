@@ -26,6 +26,7 @@
                     
                     <th>العنوان</th>
                     <th>اللغة</th>
+                    <th>تاريخ النشر</th>
                     <th>تاريخ الاضافة</th>
                     <th></th>
                 </tr>
@@ -56,6 +57,9 @@
                             </td>
                            <td>
                                 <%#Eval("lang").ToString().Equals("1") ? "انجليزي" : "عربي" %>
+                            </td>
+                            <td>
+                                <%#new Dates().GregToHijri(Eval("publishdate","{0:dd/MM/yyyy}"),"dd/MMM/yyyy") %>
                             </td>
                            <td>
                                 <%#new Dates().GregToHijri(Eval("AddDate","{0:dd/MM/yyyy}"),"dd/MMM/yyyy") %>

@@ -12,6 +12,8 @@ public partial class Researcher : UICaltureBase
     private Dates _dates=new Dates();
     protected void Page_Load(object sender, EventArgs e)
     {
+
+       
         if (!Page.IsPostBack)
         {
 
@@ -54,14 +56,16 @@ public partial class Researcher : UICaltureBase
         }
         if (from.HasValue)
         {
-            sqlSearch += " and AddDate>=@fromDate";
+            sqlSearch += " and PublishDate>=@fromDate";
             db.AddParameter("@fromDate", from);
         }
         if (to.HasValue)
         {
-            sqlSearch += " and AddDate<=@toDate";
+            sqlSearch += " and PublishDate<=@toDate";
             db.AddParameter("@toDate", to);
         }
+
+        sqlSearch += " Order By PublishDate desc";
 
         DataTable dt = db.ExecuteDataTable(sqlSearch);
         ListView1.DataSource = dt;

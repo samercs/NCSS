@@ -19,18 +19,25 @@ public partial class PhenomenonDetails : UICaltureBase
                 Lang lang = new Lang();
                 db.AddParameter("@lang", lang.getCurrentLang());
                 db.AddParameter("@id", id);
-                DataTable dt = db.ExecuteDataTable("select * from SocialEvent where id=@id and lang=@lang");
 
-                if (dt.Rows.Count == 0)
+                string sql1 = "select * from SocialEvent where id=@id and lang=@lang";
+                string sql2 = "select * from SocialEventDoc where Eventid=@id";
+
+                DataSet ds = db.ExecuteDataSet(sql1);
+                
+
+                if (ds.Tables[0].Rows.Count == 0)
                 {
                     Response.Redirect("~/Phenomenon.aspx");
                 }
 
-                Repeater1.DataSource = dt;
+                Repeater1.DataSource = ds.Tables[0];
                 Repeater1.DataBind();
 
+                
+
                 db.AddParameter("@lang", lang.getCurrentLang());
-                dt = db.ExecuteDataTable("select top(3) * from SocialEvent where lang=@lang Order by id desc");
+                DataTable dt = db.ExecuteDataTable("select top(3) * from SocialEvent where lang=@lang Order by id desc");
                 Repeater2.DataSource = dt;
                 Repeater2.DataBind();
                 
@@ -43,5 +50,18 @@ public partial class PhenomenonDetails : UICaltureBase
 
             
         }
+    }
+
+    public void Repeter1_ItemDataBound(Object Sender, RepeaterItemEventArgs e)
+    {
+        Repeater r = e.Item.FindControl("Repeater4") as Repeater;
+        HiddenField id = e.Item.FindControl("id") as HiddenField;
+
+        Database db = new Database();
+        db.AddParameter("@id", id.Value);
+        string sql2 = "select * from SocialEventDoc where Eventid=@id";
+        DataTable dt = db.ExecuteDataTable(sql2);
+        r.DataSource = dt;
+        r.DataBind();
     }
 }

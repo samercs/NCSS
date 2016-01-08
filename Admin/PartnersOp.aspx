@@ -59,6 +59,15 @@
                     </td>
                     <td></td>
                 </tr>
+                <tr>
+                    <td>
+                        <asp:Label ID="Label3" runat="server" Text="الرابط" CssClass="label_xblack"></asp:Label></td>
+                    <td>
+                        <asp:TextBox ID="txtUrl"   ValidationGroup="Option3" CssClass="txt1" runat="server"></asp:TextBox>
+                        <div class="hint">الرابط مبتدأ ب HTTP او HTTPS</div>
+                    </td>
+                    <td></td>
+                </tr>
                 
                 <tr>
                     <td>

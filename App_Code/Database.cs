@@ -492,6 +492,18 @@ public class Database : IDisposable
 
     }
 
+    public void LoadDDL(string tablename, string pname, string id, ref DropDownList ddl, string DefaultItemText,string where,string order)
+    {
+
+        System.Data.DataTable dt = ExecuteDataTable("Select * from " + tablename+" where " + where+" Order By " + order);
+        ddl.Items.Add(new ListItem(DefaultItemText, "-1"));
+        foreach (System.Data.DataRow r in dt.Rows)
+        {
+            ddl.Items.Add(new ListItem(r[pname].ToString(), r[id].ToString()));
+        }
+
+    }
+
     public string[] getPageData(string pageid, string cul)
     {
         string[] result = new string[2];

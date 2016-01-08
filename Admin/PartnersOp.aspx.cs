@@ -32,13 +32,19 @@ public partial class Admin_PartnersOp : System.Web.UI.Page
         db.AddParameter("@id", Request.QueryString["id"]);
         System.Data.DataSet ds = db.ExecuteDataSet("select * from " + tablename + " where id=@id" + ";" + "");
         txtTitle.Text = ds.Tables[0].Rows[0]["title"].ToString();
-        
+        txtUrl.Text = ds.Tables[0].Rows[0]["Url"].ToString();
         txtShowOrder.Text = ds.Tables[0].Rows[0]["ShowOrder"].ToString();
         ddlLang.SelectedValue = ds.Tables[0].Rows[0]["lang"].ToString();
         ViewState["img"] = ds.Tables[0].Rows[0]["img"].ToString();
     }
     protected void btnSave_Click(object sender, EventArgs e)
     {
+
+        if (!txtUrl.Text.Equals("#") &&  !txtUrl.Text.ToLower().StartsWith("http"))
+        {
+            txtUrl.Text = "http://" + txtUrl.Text;
+        }
+
         if (Request.QueryString["Op"].Equals("Add") && !fileImg.HasFile)
         {
             ScriptManager.RegisterStartupScript(this, this.GetType(), "WriteMsg", "<SCRIPT LANGUAGE=\"JavaScript\">alertify.error(\"الرجاء اختيار الملف.\")</SCRIPT>", false);
@@ -54,6 +60,12 @@ public partial class Admin_PartnersOp : System.Web.UI.Page
         if (!int.TryParse(txtShowOrder.Text, out x))
         {
             ScriptManager.RegisterStartupScript(this, this.GetType(), "WriteMsg", "<SCRIPT LANGUAGE=\"JavaScript\">alertify.error(\"الرجاء التأكد من ترتيب العرض\")</SCRIPT>", false);
+            return;
+        }
+
+        if (!txtUrl.Text.Equals("#") && !Tools.IsValidUrl(txtUrl.Text))
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "WriteMsg", "<SCRIPT LANGUAGE=\"JavaScript\">alertify.error(\"الرجاء التأكد من الرابط التشعبي\")</SCRIPT>", false);
             return;
         }
 
@@ -86,6 +98,7 @@ public partial class Admin_PartnersOp : System.Web.UI.Page
         db.AddParameter("@title", txtTitle.Text);
         
         db.AddParameter("@ShowOrder", txtShowOrder.Text);
+        db.AddParameter("@Url", txtUrl.Text);
         db.AddParameter("@lang", ddlLang.SelectedValue);
         db.AddParameter("@img", ViewState["img"].ToString());
 
@@ -96,7 +109,7 @@ public partial class Admin_PartnersOp : System.Web.UI.Page
             try
             {
                 db.AddParameter("@id", Request.QueryString["id"]);
-                db.ExecuteNonQuery("Update " + tablename + " Set title=@title,showOrder=@showOrder,img=@img,lang=@lang where Id=@id");
+                db.ExecuteNonQuery("Update " + tablename + " Set title=@title,showOrder=@showOrder,img=@img,lang=@lang,Url=@Url where Id=@id");
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "WriteMsg", "alertify.alert('تم التعديل ','تم التعديل بنجاح').set('onok', function(closeEvent){ location.href='" + listpage+"'; } );", true);
             }
             catch (Exception ex)
@@ -107,7 +120,7 @@ public partial class Admin_PartnersOp : System.Web.UI.Page
         }
         else if (Request.QueryString["Op"] == "Add")
         {
-            db.ExecuteNonQuery("Insert into " + tablename + "(Title,showOrder,img,lang) Values(@Title,@showOrder,@img,@lang)");
+            db.ExecuteNonQuery("Insert into " + tablename + "(Title,showOrder,img,lang,Url) Values(@Title,@showOrder,@img,@lang,@url)");
             ScriptManager.RegisterStartupScript(this, this.GetType(), "WriteMsg", "alertify.alert('تم الاضافة ','تم الاضافة بنجاح').set('onok', function(closeEvent){ location.href='" + listpage + "'; } );", true);
         }
     }

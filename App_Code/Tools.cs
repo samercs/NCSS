@@ -74,4 +74,11 @@ public class Tools
         get { return new List<string>() { ".pdf", ".doc", ".docx" }; }
     }
 
+    public static bool IsValidUrl(string Url)
+    {
+        Uri uriResult;
+        return  Uri.TryCreate(Url, UriKind.Absolute, out uriResult)
+            && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
+    }
+
 }

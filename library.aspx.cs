@@ -13,79 +13,79 @@ public partial class library : UICaltureBase
     {
         if (!Page.IsPostBack)
         {
-
+            Lang lang = new Lang();
             txtTitle.Attributes.Add("onkeydown", "if(event.which || event.keyCode){if ((event.which == 13) || (event.keyCode == 13)) {__doPostBack('" + btnSearch.UniqueID + "','');}} ");
             txtFrom.Attributes.Add("onkeydown", "if(event.which || event.keyCode){if ((event.which == 13) || (event.keyCode == 13)) {__doPostBack('" + btnSearch.UniqueID + "','');}} ");
             txtTo.Attributes.Add("onkeydown", "if(event.which || event.keyCode){if ((event.which == 13) || (event.keyCode == 13)) {__doPostBack('" + btnSearch.UniqueID + "','');}} ");
 
 
-
-            int id =0;
-            if (Request.QueryString["id"] != null )
-            {
-                int.TryParse(Request.QueryString["id"], out id);
-            }
-
-            Database db=new Database();
-            Lang lang=new Lang();
-
-            string catNameSql = "select title,titleAr from ResearchType where id=@id";
-            
-
-            db.AddParameter("@id", id);
-
-            DataSet ds = db.ExecuteDataSet(catNameSql);
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                if (Page.Culture.Contains("Arabic"))
-                {
-                    lblcatname.Text = ds.Tables[0].Rows[0]["TitleAr"].ToString();
-                }
-                else
-                {
-                    lblcatname.Text = ds.Tables[0].Rows[0]["Title"].ToString();
-                }
-                
-            }
-
-            
-
-            ddlLang.Items.Add(new ListItem(lang.getByKey("All"),"-1"));
-            ddlLang.Items.Add(new ListItem(lang.getByKey("English"),"1"));
+            ddlLang.Items.Add(new ListItem(lang.getByKey("All"), "-1"));
+            ddlLang.Items.Add(new ListItem(lang.getByKey("English"), "1"));
             ddlLang.Items.Add(new ListItem(lang.getByKey("Arabic2"), "2"));
-
             
+            txtTitle.Attributes.Add("placeholder", lang.getByKey("EnterResearchTitle"));
 
-            SearchLibrary("",null,null,"");
+            Database db = new Database();
+            if (Page.Culture.Contains("Ar"))
+            {
+                db.LoadDDL("ResearchType", "TitleAr", ref ddlType, lang.getByKey("Type"));
+            }
+            else
+            {
+                db.LoadDDL("ResearchType", "Title", ref ddlType, lang.getByKey("Type"));
+            }
+
+            SearchLibrary("", null, null, "","-1");
         }
     }
 
     protected void Repeater1_OnPagePropertiesChanged(object sender, EventArgs e)
     {
-        SearchLibrary("",null,null,"");
+        btnSearch_OnClick(null, null);
     }
 
-    private void SearchLibrary(string title, DateTime? from, DateTime? to, string lang)
+    private void SearchLibrary(string title, DateTime? from, DateTime? to, string lang,string type)
     {
-        Database db=new Database();
-        string searchSql = "select * from Library where (type=@id) ";
-        db.AddParameter("@id", Request.QueryString["id"]);
-        if (!string.IsNullOrEmpty(title) || from.HasValue || to.HasValue || !string.IsNullOrEmpty(lang))
+        string searchSql = "";
+        
+        Database db = new Database();
+        if (Request.QueryString["id"] != null)
         {
+            searchSql = "select * from Library where (type=@id) ";
             
+            string canName = "";
+            if (Page.Culture.Contains("Ar"))
+            {
+                canName = db.GetProName("ResearchType", "TitleAr", "id", Request.QueryString["id"]);
+            }
+            else
+            {
+                canName = db.GetProName("ResearchType", "Title", "id", Request.QueryString["id"]);
+            }
+            lblcatname.Text = canName;
+            db.AddParameter("@id", Request.QueryString["id"]);
+        }
+        else
+        {
+            searchSql = "select * from Library where (1=1) ";
+        }
+
+        if (!string.IsNullOrEmpty(title) || from.HasValue || to.HasValue || !string.IsNullOrEmpty(lang) || !type.Equals("-1"))
+        {
+
             if (!string.IsNullOrEmpty(title))
             {
-                searchSql += " and (title like  '%' + @title + '%') ";
+                searchSql += " and (title like  '%' + @title + '%' or writer like  '%' + @title + '%') ";
                 db.AddParameter("@title", title);
             }
             if (from.HasValue)
             {
-                searchSql += " and adddate >= @from ";
+                searchSql += " and PublishDate >= @from ";
                 db.AddParameter("@from", from);
             }
             if (to.HasValue)
             {
-                searchSql += " and adddate <= @to ";
+                searchSql += " and PublishDate <= @to ";
                 db.AddParameter("@to", to);
             }
             if (!string.IsNullOrEmpty(lang))
@@ -93,23 +93,29 @@ public partial class library : UICaltureBase
                 searchSql += " and lang = @lang ";
                 db.AddParameter("@lang", lang);
             }
+            if (!type.Equals("-1"))
+            {
+                searchSql += " and [type] = @type ";
+                db.AddParameter("@type", type);
+            }
 
-            
+
+
         }
-
+        searchSql += " order by PublishDate desc";
         DataTable dt = db.ExecuteDataTable(searchSql);
         Repeater1.DataSource = dt;
         Repeater1.DataBind();
 
-        
+
     }
 
     protected void btnSearch_OnClick(object sender, EventArgs e)
     {
-        DateTime? fromTmp=null, toTmp=null;
+        DateTime? fromTmp = null, toTmp = null;
         DateTime tmp;
-        CultureInfo arSA=CultureInfo.CreateSpecificCulture("ar-SA");
-        if (DateTime.TryParseExact(txtFrom.Text,"d/M/yyyy",arSA,DateTimeStyles.None, out tmp))
+        CultureInfo arSA = CultureInfo.CreateSpecificCulture("ar-SA");
+        if (DateTime.TryParseExact(txtFrom.Text, "d/M/yyyy", arSA, DateTimeStyles.None, out tmp))
         {
             fromTmp = tmp;
         }
@@ -118,8 +124,8 @@ public partial class library : UICaltureBase
             toTmp = tmp;
         }
         string lang = ddlLang.SelectedValue.Equals("-1") ? "" : ddlLang.SelectedValue;
-        SearchLibrary(txtTitle.Text,fromTmp,toTmp,lang);
+        SearchLibrary(txtTitle.Text, fromTmp, toTmp, lang,ddlType.SelectedValue);
     }
 
-    
+
 }

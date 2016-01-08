@@ -29,13 +29,14 @@
                     <th>اللغة</th>
                     <th>المؤلف</th>
                     <th>تاريخ الاضافة</th>
+                    <th>تاريخ النشر</th>
                     <th></th>
                 </tr>
                 <asp:ListView ID="RepeaterLists" OnPagePropertiesChanged="ListView1_PagePropertiesChanged" ItemPlaceholderID="iph" runat="server">
                     <LayoutTemplate>
                         <asp:PlaceHolder ID="iph" runat="server"></asp:PlaceHolder>
                         <tr>
-                            <td colspan="7">
+                            <td colspan="8">
                                 <div class="Pager AC">
                                     <asp:DataPager ID="DataPager2" PagedControlID="RepeaterLists" PageSize="10" runat="server">
                                         <Fields>
@@ -67,6 +68,9 @@
                             </td>
                             <td>
                                 <%#new Dates().GregToHijri(Eval("AddDate","{0:dd/MM/yyyy}"),"dd/MMM/yyyy") %>
+                            </td>
+                            <td>
+                                <%#new Dates().GregToHijri(Eval("PublishDate","{0:dd/MM/yyyy}"),"dd/MMM/yyyy") %>
                             </td>
                             <td>
                                 <asp:LinkButton CssClass="btnDelete" ID="btnDelete" OnCommand="btnDelete_Command" CommandName='<%#Eval("File") %>' CommandArgument='<%#Eval("id") %>' runat="server"><i class="fa fa-trash fs20px"></i> حذف</asp:LinkButton>

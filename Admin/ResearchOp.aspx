@@ -95,6 +95,14 @@
                 </tr>
                 <tr>
                     <td>
+                        <asp:Label ID="Label4" runat="server" Text="تاريخ النشر" CssClass="label_xblack"></asp:Label></td>
+                    <td>
+                        <uc1:hijriCalender ValidationGroup="Option3" Class="txtCal" runat="server" ID="txtPublishDate" />
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
                         <asp:Label ID="Label3" runat="server" Text="تاريخ الاضافة" CssClass="label_xblack"></asp:Label></td>
                     <td>
                         <uc1:hijriCalender ValidationGroup="Option3" Class="txtCal" runat="server" ID="txtAddDate" />

@@ -111,7 +111,7 @@ body {
 
 nav {
     font-family: 'NewFont';
-    font-size: 1.12em;
+    font-size: 1em;
 }
 
 .caret {
@@ -176,6 +176,32 @@ nav ul .active {
     color: #87BF6C;
 }
 
+
+.LoginIcon {
+            
+            margin-right: 0.3em;
+            float: left;
+            margin-top: 10px;
+            text-align: center;
+            width: 180px;
+            
+        }
+
+.LoginIcon > a {
+
+    background-color: #87BF6C;
+    color: #fff;
+    padding: 7px 20px;
+    border-radius: 7px;
+            
+        }
+
+.LoginIcon > a:hover {
+    color: #fff;
+    text-decoration: none;
+    background-color: #846666;       
+        }
+
 .SocialIcons {
     margin-right: 0.5em;
     float: left;
@@ -187,17 +213,19 @@ nav ul .active {
     height: 3em;
 }
 
-    .SocialIcons:nth-child(2) {
-        background-color: #1F578F;
-    }
+.SocialIcons:nth-child(3) {
+            background-color: #1F578F;
+        }
 
-    .SocialIcons:nth-child(3) {
-        background-color: #EC2E32;
-    }
+        .SocialIcons:nth-child(4) {
+            background-color: #EC2E32;
+        }
 
-    .SocialIcons:nth-child(4) {
-        background-color: #4C3C38;
-    }
+        .SocialIcons:nth-child(5) {
+            background-color: #4C3C38;
+        }
+
+    
 
 .SocialMedia {
     position: absolute;
@@ -1454,35 +1482,14 @@ header .container{ position :relative;}
             margin-left: 0.5em;
         }
 
+        
 
-    .SocialIcons {
-        margin-right: 0.3em;
-        float: left;
-        top: 0;
-        background-color: #0097B9;
-        padding: 1.2em 0.3em 0.5em 0.3em;
-        text-align: center;
-        width: 1.5em;
-        height: 2.4em;
-    }
 
-        .SocialIcons:nth-child(2) {
-            background-color: #1F578F;
-        }
+    
 
-        .SocialIcons:nth-child(3) {
-            background-color: #EC2E32;
-        }
+        
 
-        .SocialIcons:nth-child(4) {
-            background-color: #4C3C38;
-        }
-
-    .SocialMedia {
-        position: absolute;
-        left: 6em;
-        top: 0;
-    }
+    
 
 
 
@@ -2057,4 +2064,60 @@ header .container{ position :relative;}
 }
 .maxWidth150 {
     max-width: 150px;
+}
+
+::-webkit-input-placeholder {
+    font-size: 10px;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   font-size: 10px;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   font-size: 10px;
+}
+
+:-ms-input-placeholder {  
+   font-size: 10px; 
+}
+
+.searchTable {
+    width: 100%;
+    margin: 10px auto;
+}
+
+.DocRight {
+    float: right;
+    width: 40%;
+    margin-left: 10%;
+
+}
+
+.DocRight > img {
+    width: 100%;
+}
+
+.DocLeft {
+   float: right;
+    width: 50%;
+    
+}
+.DocLeft > h5 {
+    margin-top: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    
+}
+.DocLeft > img {
+    margin: 0 auto;
+    margin-left: 10px;
+    width: 25px;
+}
+.DocLeft > span {
+    color: #357ae8;
+}
+
+.col-md-6 {
+    float: right !important;
 }

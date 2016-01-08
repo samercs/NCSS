@@ -1,4 +1,4 @@
-﻿<%@ Page EnableEventValidation="false" Title=""  Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+﻿<%@ Page EnableEventValidation="false" Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
 
 <%@ Register Src="~/controls/Twitter.ascx" TagPrefix="uc1" TagName="Twitter" %>
 
@@ -6,7 +6,7 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
@@ -46,9 +46,9 @@
                 </div>
             </ItemTemplate>
         </asp:Repeater>
-      <iframe  class="AboutImage" src="https://www.youtube.com/embed/I7c28RlcIDM" frameborder="0" allowfullscreen></iframe>
+        <iframe class="AboutImage" src="https://www.youtube.com/embed/I7c28RlcIDM" frameborder="0" allowfullscreen></iframe>
     </div>
-    
+
 
     <div class="clearfix"></div>
     <div class="space"></div>
@@ -60,7 +60,7 @@
     </div>
     <div class="container">
         <div class="HomeRight">
-              <asp:Repeater ID="Repeater6" runat="server">
+            <asp:Repeater ID="Repeater6" runat="server">
                 <ItemTemplate>
                     <p class="ResearchLinks">
                         <asp:HyperLink download='<%#Eval("file") %>' ID="HyperLink3" NavigateUrl='<%#Eval("File","~/images/Library/{0}") %>' runat="server"><%#Eval("Title") %></asp:HyperLink>
@@ -80,7 +80,7 @@
                         <div class="SingleNewsHome hvr-shadow ">
                             <asp:Image ImageUrl='<%#Eval("img","~/images/Publications/{0}") %>' ID="Image1" runat="server" />
                             <h5><%#Eval("title") %></h5>
-                            <%#Eval("prev") %> 
+                            <%#Eval("prev") %>
                         </div>
                     </asp:HyperLink>
                 </ItemTemplate>
@@ -88,40 +88,40 @@
         </div>
     </div>
 
- 
+
     <div class="clearfix"></div>
     <div class="space"></div>
     <div class="container">
         <div class="singlebox">
             <h4><%= new Lang().getByKey("LatestNews") %></h4>
-              <asp:Repeater ID="Repeater5" runat="server">
+            <asp:Repeater ID="Repeater5" runat="server">
                 <ItemTemplate>
                     <asp:HyperLink NavigateUrl='<%#Eval("id","~/NewsDetails.aspx?id={0}") %>' ID="HyperLink2" runat="server">
                         <div class="SingleNewsHome  hvr-shadow">
                             <asp:Image ImageUrl='<%#Eval("img","~/images/News/{0}") %>' ID="Image1" runat="server" />
                             <h5><%#Eval("title") %></h5>
-                            <%#Eval("prev") %> 
+                            <%#Eval("prev") %>
                         </div>
                     </asp:HyperLink>
                 </ItemTemplate>
             </asp:Repeater>
-          
+
 
         </div>
         <div class="singlebox">
             <h4><%=new Lang().getByKey("LatestTweets") %></h4>
             <uc1:Twitter class="Twitter" runat="server" ID="Twitter" />
         </div>
-        <div class="singlebox " style=" position :relative;"">
-         
-           
+        <div class="singlebox " style="position: relative;">
+
+
             <h4><%=new Lang().getByKey("OpinionPoll") %></h4>
             <asp:Repeater ID="Repeater7" OnItemDataBound="Repeater8_OnItemDataBound" runat="server">
                 <ItemTemplate>
                     <p class="LastBoxText"><%#Eval("title") %></p>
                     <div class="clearfix"></div>
-                    
-                    <asp:Repeater  OnItemCommand="Repeater8_OnItemCommand" ID="Repeater8"  runat="server">
+
+                    <asp:Repeater OnItemCommand="Repeater8_OnItemCommand" ID="Repeater8" runat="server">
                         <ItemTemplate>
                             <asp:HiddenField ID="pollid" Value='<%#Eval("PollId") %>' runat="server" />
                             <asp:HiddenField ID="optionid" Value='<%#Eval("id") %>' runat="server" />
@@ -131,28 +131,28 @@
                                     <%#Eval("per","{0:0.00}") %> %
                                 </div>
                             </div>
-                           
-                            <asp:LinkButton   CssClass="boxBtn" ID="LinkButton1" runat="server"><%# Page.Culture.Contains("Arabic") ?  Eval("titleAr") : Eval("title") %></asp:LinkButton>
+
+                            <asp:LinkButton CssClass="boxBtn" ID="LinkButton1" runat="server"><%# Page.Culture.Contains("Arabic") ?  Eval("titleAr") : Eval("title") %></asp:LinkButton>
                             <div class="clearfix"></div>
 
                         </ItemTemplate>
-                     </asp:Repeater>
-                     <div style="height:1em; width:100%;"></div>
-                    
-                    
+                    </asp:Repeater>
+                    <div style="height: 1em; width: 100%;"></div>
+
+
                     <div class="LinkText">
                         <asp:HyperLink NavigateUrl="~/Poll.aspx" ID="HyperLink4" runat="server"><%=new Lang().getByKey("PreviousOpinionPolls") %></asp:HyperLink>
                     </div>
-                     <div style="height:0.4em; width:100%;"></div>
+                    <div style="height: 0.4em; width: 100%;"></div>
                     <asp:HiddenField ID="id" Value='<%#Eval("id") %>' runat="server" />
                 </ItemTemplate>
             </asp:Repeater>
-           
+
 
         </div>
 
     </div>
-   
+
     <div class="clearfix"></div>
     <div class="space"></div>
     <div id="fstLine">
@@ -170,12 +170,14 @@
                                 <li class="amazingcarousel-item">
                                     <div class="amazingcarousel-item-container">
                                         <div class="amazingcarousel-image">
-                                            
+
+                                            <a href="<%#Eval("Url") %>">
                                                 <asp:Image ID="Image2" CssClass="Spon" ImageUrl='<%#Eval("img","~/images/Partners/{0}") %>' runat="server" />
                                                 <div class="amazingcarousel-text">
                                                     <div class="amazingcarousel-text-bg"></div>
                                                     <div class="amazingcarousel-title"></div>
                                                 </div>
+                                            </a>
                                         </div>
                                     </div>
                                 </li>
@@ -188,12 +190,12 @@
                 </div>
                 <div class="amazingcarousel-prev"></div>
                 <div class="amazingcarousel-next"></div>
-                
+
             </div>
         </div>
     </div>
 
-     <div class="clearfix"></div>
+    <div class="clearfix"></div>
 
     <div class="space"></div>
     <script src="carouselengine/amazingcarousel.js"></script>
