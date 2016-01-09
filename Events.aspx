@@ -77,7 +77,7 @@
                         <td colspan="2">
                             <%#Eval("title") %>
                         </td>
-                        <td rowspan="2">
+                        <td  rowspan="2">
                             <%#Eval("txt").ToString().Length > 250 ? Eval("txt").ToString().Substring(0,249) + "..." : Eval("txt") %>
                         </td>
                         <td rowspan="2">
