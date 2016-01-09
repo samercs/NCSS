@@ -11,7 +11,7 @@
             <div class="container">
 
                 <h4 class="inTitles"><%=new Lang().getByKey("RelatedParties") %></h4>
-
+                <br/><br/><br/><br/>
 
                 <div class="MobileSpace"></div>
                 <div class="MobileSpace"></div>
