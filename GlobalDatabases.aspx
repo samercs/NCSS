@@ -56,7 +56,7 @@
                     <asp:ListView ID="Repeater1" OnPagePropertiesChanged="Repeater1_OnPagePropertiesChanged" runat="server">
                         <ItemTemplate>
                             <tr class="TableDetails1">
-                                <td><%#Eval("Title") %></td>
+                                <td style="min-width: 150px;"><%#Eval("Title") %></td>
                                 <td><%#Eval("txt") %></td>
                                 <td class="DownloadBtn"><a href="<%#Eval("Url") %>"><%=new Lang().getByKey("Explore") %></a></td>
                             </tr>
