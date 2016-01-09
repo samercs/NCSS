@@ -58,7 +58,7 @@
                             <tr class="TableDetails1">
                                 <td style="min-width: 150px;"><%#Eval("Title") %></td>
                                 <td><%#Eval("txt") %></td>
-                                <td class="DownloadBtn"><a href="<%#Eval("Url") %>"><%=new Lang().getByKey("Explore") %></a></td>
+                                <td style="min-width: 150px;" class="DownloadBtn"><a href="<%#Eval("Url") %>"><%=new Lang().getByKey("Explore") %></a></td>
                             </tr>
                         </ItemTemplate>
                        
