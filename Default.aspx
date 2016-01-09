@@ -42,7 +42,7 @@
                 <div class="HomeText">
                     <h4><%#Eval("title") %></h4>
                     <p><%#Eval("prev") %></p>
-                    <a class="More" href="About.aspx"><%=new Lang().getByKey("More") %></a>
+                    <a class="More" href="About.aspx?id=21"><%=new Lang().getByKey("More") %></a>
                 </div>
             </ItemTemplate>
         </asp:Repeater>
@@ -202,5 +202,4 @@
     <link rel="stylesheet" type="text/css" href="carouselengine/initcarousel-1.css">
     <script src="carouselengine/initcarousel-1.js"></script>
 
-</asp:Content>
-
+</asp:Conten

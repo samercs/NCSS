@@ -24,7 +24,7 @@
 
         <div class="SocialMedia">
             <div class="LoginIcon">
-                <a><%=new Lang().getByKey("MemberLogin") %></a>
+                <a href="../ResearchersLogin.aspx"><%=new Lang().getByKey("MemberLogin") %></a>
             </div>
             <div class="SocialIcons hvr-sink">
                 <a target="_blank" href="https://twitter.com/NCSSKSA">

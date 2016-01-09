@@ -2431,3 +2431,6 @@ header .container{ position :relative;}
 
 .navbar-nav li a  { padding :0; 
     }
+.checkbox label, .radio label {
+    margin-right: 20px !important;
+}

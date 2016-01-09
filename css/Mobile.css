@@ -1349,3 +1349,6 @@ inTextBox3 {
     position: static !important;
     display: inline-block !important;
 }
+.checkbox label, .radio label {
+    margin-right: 20px !important;
+}

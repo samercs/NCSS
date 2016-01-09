@@ -2144,3 +2144,6 @@ header .container{ position :relative;}
     .maxWidth150 {
         max-width: 150px;
     }
+    .checkbox input[type=checkbox], .checkbox-inline input[type=checkbox], .radio input[type=radio], .radio-inline input[type=radio] {
+     margin-left: 0px !important;
+}
