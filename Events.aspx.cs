@@ -15,17 +15,7 @@ public partial class Events : UICaltureBase
         if (!Page.IsPostBack)
         {
             GetData("",null);
-            Database db = new Database();
-            Lang lang = new Lang();
-            db.AddParameter("@lang", lang.getCurrentLang());
-            DataTable dt = db.ExecuteDataTable("select top(3) * from SocialEvent where lang=@lang Order by id desc");
-            Repeater2.DataSource = dt;
-            Repeater2.DataBind();
-
-            db.AddParameter("@lang", lang.getCurrentLang());
-            dt = db.ExecuteDataTable("select top(3) * from news where lang=@lang Order by id desc");
-            Repeater1.DataSource = dt;
-            Repeater1.DataBind();
+            
 
             txtname.Attributes.Add("onkeydown", "if(event.which || event.keyCode){if ((event.which == 13) || (event.keyCode == 13)) {__doPostBack('" + btnSearch.UniqueID + "','');}} ");
             txtDate.Attributes.Add("onkeydown", "if(event.which || event.keyCode){if ((event.which == 13) || (event.keyCode == 13)) {__doPostBack('" + btnSearch.UniqueID + "','');}} ");
@@ -79,5 +69,20 @@ public partial class Events : UICaltureBase
 
 
         GetData(txtname.Text, tmpDate);
+    }
+
+    protected void ListView1_OnItemDataBound(object sender, ListViewItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListViewItemType.DataItem)
+        {
+            Repeater r =e.Item.FindControl("Repeater1") as Repeater;
+            HiddenField id = e.Item.FindControl("id") as HiddenField;
+            Database db = new Database();
+            db.AddParameter("@id", id.Value);
+            DataTable dt = db.ExecuteDataTable("select * from EventDoc where EventId=@id");
+            r.DataSource = dt;
+            r.DataBind();
+
+        }
     }
 }

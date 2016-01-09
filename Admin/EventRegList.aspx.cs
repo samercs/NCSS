@@ -6,27 +6,27 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Admin_ResearchList : System.Web.UI.Page
+public partial class Admin_EventRegList : System.Web.UI.Page
 {
-    string tablename = "SocialEventDoc";
-    private string editPage = "SocialEventDocOp.aspx?Op=Edit&id={0}";
-    private string addPage = "SocialEventDocOp.aspx?Op=Add";
-    public string name = "الابحاث";
+    string tablename = "EventReg";
+    private string editPage = "#";
+    private string addPage = "#";
+    public string name = "المسجلون";
 
     protected void Page_Load(object sender, EventArgs e)
     {
         int id;
         if(!int.TryParse(Request.QueryString["id"],out id))
         {
-            Response.Redirect("ResearcherList.aspx");
+            Response.Redirect("EventList.aspx");
         }
         if (!Page.IsPostBack)
         {
             addPage += "&pid=" + Request.QueryString["id"];
             
-            HyperLink3.NavigateUrl = addPage;
+            
             LoadData();
-            HyperLink1.NavigateUrl = "SocialEventList.aspx";
+            HyperLink1.NavigateUrl = "EventList.aspx";
         }
     }
     void LoadData()
@@ -37,7 +37,7 @@ public partial class Admin_ResearchList : System.Web.UI.Page
         RepeaterLists.DataSource = ds.Tables[0];
         RepeaterLists.DataBind();
         Cache["dt1"] = ds.Tables[0];
-        name += " " + db.GetProName("SocialEvent", "Title", "id", Request.QueryString["id"]);
+        name += " " + db.GetProName("Event", "Title", "id", Request.QueryString["id"]);
     }
     protected void CheckBox10_CheckedChanged(object sender, EventArgs e)
     {
@@ -70,10 +70,7 @@ public partial class Admin_ResearchList : System.Web.UI.Page
     }
     protected void btnDelete_Command(object sender, CommandEventArgs e)
     {
-        if (!string.IsNullOrWhiteSpace(e.CommandName))
-        {
-            System.IO.File.Delete(Server.MapPath("~/images/SocialEventDoc/" + e.CommandName));
-        }
+        
 
         Database db = new Database(); string sql = string.Empty;
 
@@ -85,10 +82,7 @@ public partial class Admin_ResearchList : System.Web.UI.Page
         }
         LoadData();
     }
-    protected void btnEdit_Command(object sender, CommandEventArgs e)
-    {
-        Response.Redirect(String.Format(editPage,e.CommandArgument.ToString())+"&pid=" + Request.QueryString["id"]);
-    }
+   
     protected void btnContactDelete_Click(object sender, EventArgs e)
     {
         Database db = new Database();
@@ -104,11 +98,8 @@ public partial class Admin_ResearchList : System.Web.UI.Page
             if (chk.Checked)
             {
                 id = (HiddenField)RepeaterLists.Items[x].FindControl("id");
-                file = (HiddenField)RepeaterLists.Items[x].FindControl("file");
-                if (!string.IsNullOrWhiteSpace(file.Value))
-                {
-                    System.IO.File.Delete(Server.MapPath("~/Images/SocialEventDoc/" + file.Value));
-                }
+                
+                
                 arrlist.Add(id.Value);
 
             }

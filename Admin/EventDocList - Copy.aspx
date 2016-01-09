@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true" CodeFile="SocialEventDocList.aspx.cs" Inherits="Admin_ResearchList" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true" CodeFile="EventDocList - Copy.aspx.cs" Inherits="Admin_EventDocList" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
@@ -55,7 +55,7 @@
                                 <%#Eval("name") %> 
                             </td>
                            <td>
-                                <a href="/images/SocialEventDoc/<%#Eval("Url") %>">
+                                <a href="/images/EventDoc/<%#Eval("Url") %>">
                                     <%#Eval("Url") %> 
                                 </a>
                             </td>

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true" CodeFile="EventList.aspx.cs" Inherits="Admin_EventList" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true" CodeFile="EventRegList.aspx.cs" Inherits="Admin_EventRegList" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
@@ -14,8 +14,8 @@
     </asp:UpdateProgress>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <asp:HyperLink ID="HyperLink1" NavigateUrl="Default.aspx" CssClass="tdn fl" runat="server"><h5><i class="fa fa-backward"></i> رجوع</h5></asp:HyperLink>
-            <asp:HyperLink ID="HyperLink3" NavigateUrl="" CssClass="tdn fr" runat="server"><h5><i class="fa fa-plus-square-o"></i>  اضافة جديد</h5></asp:HyperLink>
+            <asp:HyperLink ID="HyperLink1" NavigateUrl="" CssClass="tdn fl" runat="server"><h5><i class="fa fa-backward"></i> رجوع</h5></asp:HyperLink>
+            
             <asp:LinkButton ID="btnContactDelete" OnClick="btnContactDelete_Click" runat="server" CssClass="tdn fr mr10px btnDelete"><h5><i class="fa fa-times"></i> حذف  المختارة</h5></asp:LinkButton>
             <div class="clear"></div>
             <table cellspacing='0' class="LoginTbl tblList">
@@ -24,15 +24,11 @@
                     <th>
                         <asp:CheckBox ID="CheckBox10" OnCheckedChanged="CheckBox10_CheckedChanged" AutoPostBack="true" runat="server" /></th>
                     
-                    <th>العنوان</th>
-                    <th>اللغة</th>
-                    <th>
-                        المرفقات
-                    </th>
-                    <th>
-                        المسجلون
-                    </th>
-                    <th>التاريخ</th>
+                    <th>الاسم</th>
+                    <th>رقم الهاتف</th>
+                    <th>البريد الالكتروني</th>
+                    <th>العمر</th>
+                    <th>التخصص</th>
                     <th></th>
                 </tr>
                 <asp:ListView ID="RepeaterLists" OnPagePropertiesChanged="ListView1_PagePropertiesChanged" ItemPlaceholderID="iph" runat="server">
@@ -58,28 +54,24 @@
                                 <asp:CheckBox ID="CheckBox1" runat="server" /></td>
                             
                             <td>
-                                <%#Eval("title") %> 
+                                <%#Eval("name") %> 
                             </td>
-                            
-                            <td>
-                                <%#Eval("lang").ToString().Equals("1") ? "انجليزي" : "عربي" %>
-                            </td>
-                            <td>
-                                <%#new Dates().GregToHijri(Eval("EventDate","{0:dd/MM/yyyy}"),"dd/MMMM/yyyy")%>
+                             <td>
+                                <%#Eval("Phone") %> 
                             </td>
                             <td>
-                                <a href="EventDocList.aspx?id=<%#Eval("id") %>">
-                                    المرفقات
-                                </a>
+                                <%#Eval("email") %> 
                             </td>
                             <td>
-                                <a href="EventRegList.aspx?id=<%#Eval("id") %>">
-                                    المسجلون
-                                </a>
+                                <%#Eval("Age") %> 
                             </td>
+                            <td>
+                                <%#Eval("Major") %> 
+                            </td>
+                           
                             <td>
                                 <asp:LinkButton CssClass="btnDelete" ID="btnDelete" OnCommand="btnDelete_Command"  CommandArgument='<%#Eval("id") %>' runat="server"><i class="fa fa-trash fs20px"></i> حذف</asp:LinkButton>
-                                <asp:LinkButton ID="btnEdit" OnCommand="btnEdit_Command" CommandArgument='<%#Eval("id") %>' runat="server"><i class="fa fa-pencil-square-o fs20px"></i> تعديل</asp:LinkButton>
+                                
                             </td>
                         </tr>
                     </ItemTemplate>
