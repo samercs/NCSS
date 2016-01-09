@@ -333,7 +333,7 @@ header .container{ position :relative;}
 
 
     footer .container nav ul {
-        width: 67%;
+        width: 100%;
         margin: 0 auto;
         left: 0;
         right: 0;

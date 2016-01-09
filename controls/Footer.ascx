@@ -18,10 +18,14 @@
         <nav>
             <ul>
                 <li><a href="/Default.aspx"><%= new Lang().getByKey("Home") %></a></li>
-                <li><a href="/Careers.aspx"><%= new Lang().getByKey("Careers") %></a></li>
+                <li><a href="/RelatedParties.aspx"><%= new Lang().getByKey("RelatedParties") %></a></li>
+                <li><a href="/GlobalDatabases.aspx"><%= new Lang().getByKey("GlobalDatabases") %></a></li>
+                <li><a href="/SpecializedDatabases.aspx"><%= new Lang().getByKey("SpecializedDatabases") %></a></li>
+                
                 <li><a data-toggle="modal" href="#" data-target="#login-modal"><%= new Lang().getByKey("SubscribeToOurMailingList") %></a></li>
                 <li><a href="/Experts.aspx"><%= new Lang().getByKey("Researchers") %></a></li>
                 <li><a href="/Privacy.aspx"><%= new Lang().getByKey("PrivacyPolicy") %></a></li>
+                <li><a href="/Careers.aspx"><%= new Lang().getByKey("Careers") %></a></li>
                 <li><a href="/ContactUs.aspx"><%= new Lang().getByKey("ContactUs") %></a></li>
             </ul>
         </nav>
