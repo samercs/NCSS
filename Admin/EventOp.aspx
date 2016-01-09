@@ -100,14 +100,39 @@
                 </tr>
                 <tr>
                     <td>
-                        <asp:Label ID="Label3" runat="server" Text="تاريخ الحدث" CssClass="label_xblack"></asp:Label></td>
+                        <asp:Label ID="Label3" runat="server" Text="تاريخ بداية الحدث" CssClass="label_xblack"></asp:Label></td>
                     <td>
 
                         <uc1:hijriCalender runat="server" Class="txtCal" ValidationGroup="Option3" ID="txtAddDate" />
                     </td>
                     <td></td>
                 </tr>
+                <tr>
+                    <td>
+                        <asp:Label ID="Label5" runat="server" Text="تاريخ نهاية الحدث" CssClass="label_xblack"></asp:Label></td>
+                    <td>
 
+                        <uc1:hijriCalender runat="server" Class="txtCal" ValidationGroup="Option3" ID="txtEndDate" />
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:Label ID="Label6" runat="server" Text="متاح" CssClass="label_xblack"></asp:Label></td>
+                    <td>
+
+                        <asp:CheckBox ID="cbIsOpen" Checked="True" runat="server" />
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:Label ID="Label10" runat="server" Text="الصورة" CssClass="label_xblack"></asp:Label></td>
+                    <td>
+                        <asp:FileUpload ID="fileImg" CssClass="txt1" ValidationGroup="Option3" runat="server" />
+                    </td>
+                    <td></td>
+                </tr>
                 <tr>
                     <td colspan="2">
                         <a href="EventList.aspx" class="btnLogin2 fr">الغاء</a>

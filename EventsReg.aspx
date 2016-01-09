@@ -26,23 +26,23 @@
                 <tr>
                     <td class="txb">
                         <asp:TextBox CssClass="FormTextBox" ID="txtPhone" runat="server"></asp:TextBox></td>
-                    <td class="lbl"><%=new Lang().getByKey("Phone") %></td>
+                    <td class="lbl">*<%=new Lang().getByKey("Phone") %></td>
                 </tr>
                 <tr>
                     <td class="txb">
-                        <asp:Label ID="lblEventTitle" CssClass="alert alert-info" runat="server" Text=""></asp:Label>
+                        <asp:Label ID="lblEventTitle" CssClass="Bold" runat="server" Text=""></asp:Label>
                     </td>
                     <td class="lbl"><%=new Lang().getByKey("EventName") %></td>
                 </tr>
                 <tr>
                     <td class="txb">
                         <asp:TextBox CssClass="FormTextBox" ID="txtAge" runat="server"></asp:TextBox></td>
-                    <td class="lbl"><%=new Lang().getByKey("Age") %></td>
+                    <td class="lbl">*<%=new Lang().getByKey("Age") %></td>
                 </tr>
                 <tr>
                     <td class="txb">
                         <asp:TextBox CssClass="FormTextBox" ID="txtMajor" runat="server"></asp:TextBox></td>
-                    <td class="lbl"><%=new Lang().getByKey("Major") %></td>
+                    <td class="lbl">*<%=new Lang().getByKey("Major") %></td>
                 </tr>
                 
                 <tr>
