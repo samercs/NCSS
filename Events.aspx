@@ -96,7 +96,10 @@
 
                         </td>
                         <td rowspan="2">
-                            <a href="EventsReg.aspx?id=<%#Eval("id") %>"><%=new Lang().getByKey("Register") %></a>
+                            
+                            <%# Eval("IsOpen").ToString().ToLower().Equals("false") ? new Lang().getByKey("Unavilable") : new Lang().getByKey("Avilable")  %>
+                            <br/>
+                            <a <%# Eval("IsOpen").ToString().ToLower().Equals("false") ?  "style='display:none'" : "" %> href="EventsReg.aspx?id=<%#Eval("id") %>"><%=new Lang().getByKey("Register") %></a>
 
                         </td>
                     </tr>
