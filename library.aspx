@@ -79,7 +79,7 @@
                                 <td><%#Eval("Writer") %></td>
                                 <td style="direction: rtl;"><%# new Dates().GregToHijri(Eval("PublishDate","{0:dd/MM/yyyy}"),"dd/MMM/yyyy") %></td>
                                 <td><%#Eval("lang").ToString().Equals("1") ? new Lang().getByKey("English") : new Lang().getByKey("Arabic2") %></td>
-                                <td class="DownloadBtn"><a href="/images/Library/<%#Eval("file") %>" download="<%#Eval("file") %>"><%=new Lang().getByKey("Download") %></a></td>
+                                <td class="DownloadBtn"><a href="/images/Library/<%#Eval("file") %>" download="<%#Eval("file") %>"><img src="images/download.png" width="25"/></a></td>
                             </tr>
                         </ItemTemplate>
                         <AlternatingItemTemplate>
@@ -88,7 +88,7 @@
                                 <td><%#Eval("Writer") %></td>
                                 <td style="direction: rtl;"><%# new Dates().GregToHijri(Eval("PublishDate","{0:dd/MM/yyyy}"),"dd/MMM/yyyy") %></td>
                                 <td><%#Eval("lang").ToString().Equals("1") ? new Lang().getByKey("English") : new Lang().getByKey("Arabic2") %></td>
-                                <td class="DownloadBtn"><a href="/images/Library/<%#Eval("file") %>" download="<%#Eval("file") %>"><%=new Lang().getByKey("Download") %></a></td>
+                                <td class="DownloadBtn"><a href="/images/Library/<%#Eval("file") %>" download="<%#Eval("file") %>"><img src="images/download.png" width="25"/></a></td>
                             </tr>
                         </AlternatingItemTemplate>
                     </asp:ListView>
@@ -111,6 +111,40 @@
             <div class="space"></div>
         </ContentTemplate>
     </asp:UpdatePanel>
+
+    
+    <script type="text/javascript">
+        
+        $(function () {
+            initPage();
+            
+
+        });
+
+        var prm = Sys.WebForms.PageRequestManager.getInstance();
+        if (prm != null) {
+            prm.add_endRequest(function (sender, e) {
+                if (sender._postBackSettings.panelsToUpdate != null) {
+                    initPage();
+                }
+            });
+        };
+
+        function initPage() {
+            
+
+            $("#<%=txtFrom.ClientID%>_TextBox1").calendarsPicker($.extend(
+            { calendar: $.calendars.instance('islamic', 'ar'), dateFormat: "dd/mm/yyyy", showTrigger: '<button type="button" class="trigger"><i class="fa fa-calendar"></i></button>' },
+            $.calendarsPicker.regionalOptions['ar']));
+
+
+
+            $("#<%=txtTo.ClientID%>_TextBox1").calendarsPicker($.extend(
+            { calendar: $.calendars.instance('islamic', 'ar'), dateFormat: "dd/mm/yyyy", showTrigger: '<button type="button" class="trigger"><i class="fa fa-calendar"></i></button>' },
+            $.calendarsPicker.regionalOptions['ar']));
+        }
+
+    </script>
 
 </asp:Content>
 

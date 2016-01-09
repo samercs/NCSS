@@ -183,7 +183,7 @@ nav ul .active {
             float: left;
             margin-top: 10px;
             text-align: center;
-            width: 180px;
+            
             
         }
 
@@ -193,6 +193,7 @@ nav ul .active {
     color: #fff;
     padding: 7px 20px;
     border-radius: 7px;
+    font-family: "NewFont";
             
         }
 
