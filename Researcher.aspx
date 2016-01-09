@@ -105,7 +105,7 @@
                                 <td><%#Eval("title") %></td>
                                 <td style="direction: rtl"><%#new Dates().GregToHijri(Eval("PublishDate","{0:dd/MM/yyyy}"),"dd/MMM/yyyy") %></td>
                                 <td><%#Eval("lang").ToString().Equals("1") ? new Lang().getByKey("English") : new Lang().getByKey("Arabic2") %></td>
-                                <td class="DownloadBtn"><a href="/images/Research/<%#Eval("file") %>" download="<%#Eval("file") %>"><%=new Lang().getByKey("Download") %></a></td>
+                                <td class="DownloadBtn"><a href="/images/Research/<%#Eval("file") %>" download="<%#Eval("file") %>"><img src="images/download.png" width="25"/></a></td>
                             </tr>
                         </ItemTemplate>
                     </asp:ListView>
