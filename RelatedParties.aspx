@@ -23,7 +23,7 @@
 
                                 
                                 <div class="clearfix"></div>
-                                <asp:HyperLink ID="HyperLink1" CssClass="LLL" NavigateUrl='<%#Eval("url") %>' runat="server"><%#Eval("url").ToString().Replace("http://","").Replace("https://","") %></asp:HyperLink>
+                                <asp:HyperLink Target="_blank" ID="HyperLink1" CssClass="LLL" NavigateUrl='<%#Eval("url") %>' runat="server"><%#Eval("url").ToString().Replace("http://","").Replace("https://","") %></asp:HyperLink>
                             </div>
                         </ItemTemplate>
                     </asp:ListView>
