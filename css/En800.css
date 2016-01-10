@@ -1270,11 +1270,22 @@ header .container{ position :relative;}
     }
 
 .PublicationsImage {
-    width: 100%;
-    height: 12em;
+    width: 40%;
+    float: right;
+    height: 100%;
     border: 1px solid #3C8AC9;
     border-radius: 15px;
-    margin-bottom: 2em;
+    
+}
+
+.PublicationsRight {
+    float: left;
+    width: 50%;
+    margin-right: 10%;
+}
+.PublicationsRight > p {
+    width: 100%;
+    overflow: hidden;
 }
 
 
@@ -2513,3 +2524,7 @@ header .container{ position :relative;}
     .checkbox input[type=checkbox], .checkbox-inline input[type=checkbox], .radio input[type=radio], .radio-inline input[type=radio] {
      margin-left: 0px !important;
 }
+
+    .clear {
+        clear: both;   
+    }

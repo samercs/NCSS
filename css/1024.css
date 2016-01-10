@@ -1250,11 +1250,22 @@ header .container{ position :relative;}
         }
 
 .PublicationsImage {
-    width: 100%;
-    height: 12em;
+    width: 40%;
+    float: left;
+    height: 100%;
     border: 1px solid #3C8AC9;
     border-radius: 15px;
-    margin-bottom: 2em;
+    
+}
+
+.PublicationsRight {
+    float: right;
+    width: 50%;
+    margin-left: 10%;
+}
+.PublicationsRight > p {
+    width: 100%;
+    overflow: hidden;
 }
 
 
@@ -2128,4 +2139,8 @@ header .container{ position :relative;}
 }
 .checkbox label, .radio label {
     margin-right: 20px !important;
+}
+
+.clear {
+    clear: both;
 }

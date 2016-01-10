@@ -23,17 +23,19 @@
                 <tr>
                     <th>
                         <asp:CheckBox ID="CheckBox10" OnCheckedChanged="CheckBox10_CheckedChanged" AutoPostBack="true" runat="server" /></th>
-                    <th>الصورة</th>
+                    <th>الغلاف</th>
+                    <th>الفهرس</th>
                     <th>العنوان</th>
+                    <th>المؤلف</th>
                     <th>اللغة</th>
-                    <th>التاريخ</th>
+                    <th>تاريخ الاصدار</th>
                     <th></th>
                 </tr>
                 <asp:ListView ID="RepeaterLists" OnPagePropertiesChanged="ListView1_PagePropertiesChanged" ItemPlaceholderID="iph" runat="server">
                     <LayoutTemplate>
                         <asp:PlaceHolder ID="iph" runat="server"></asp:PlaceHolder>
                         <tr>
-                            <td colspan="7">
+                            <td colspan="8">
                                 <div class="Pager AC">
                                     <asp:DataPager ID="DataPager2" PagedControlID="RepeaterLists" PageSize="10" runat="server">
                                         <Fields>
@@ -49,14 +51,20 @@
                             <td>
                                 <asp:HiddenField ID="id" runat="server" Value='<%# Eval("Id") %>' />
                                 <asp:HiddenField ID="img" runat="server" Value='<%# Eval("img") %>' />
+                                <asp:HiddenField ID="HiddenField1" runat="server" Value='<%# Eval("img2") %>' />
                                 <asp:CheckBox ID="CheckBox1" runat="server" /></td>
                             <td>
                                 <img src="/images/Publications/<%#Eval("img") %>" width="50"/> 
                             </td>
                             <td>
+                                <img src="/images/Publications/<%#Eval("img2") %>" width="50"/> 
+                            </td>
+                            <td>
                                 <%#Eval("title") %> 
                             </td>
-                            
+                            <td>
+                                <%#Eval("Writer") %> 
+                            </td>
                             <td>
                                 <%#Eval("lang").ToString().Equals("1") ? "انجليزي" : "عربي" %>
                             </td>

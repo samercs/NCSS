@@ -128,4 +128,56 @@ public partial class library : UICaltureBase
     }
 
 
+
+    protected void txtTitle_TextChanged(object sender, EventArgs e)
+    {
+        DateTime? fromTmp = null, toTmp = null;
+        DateTime tmp;
+        CultureInfo arSA = CultureInfo.CreateSpecificCulture("ar-SA");
+        if (DateTime.TryParseExact(txtFrom.Text, "d/M/yyyy", arSA, DateTimeStyles.None, out tmp))
+        {
+            fromTmp = tmp;
+        }
+        if (DateTime.TryParseExact(txtTo.Text, "d/M/yyyy", arSA, DateTimeStyles.None, out tmp))
+        {
+            toTmp = tmp;
+        }
+        string lang = ddlLang.SelectedValue.Equals("-1") ? "" : ddlLang.SelectedValue;
+        SearchLibrary(txtTitle.Text, fromTmp, toTmp, lang, ddlType.SelectedValue);
+        txtTitle.Focus();
+    }
+
+    protected void ddlType_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        DateTime? fromTmp = null, toTmp = null;
+        DateTime tmp;
+        CultureInfo arSA = CultureInfo.CreateSpecificCulture("ar-SA");
+        if (DateTime.TryParseExact(txtFrom.Text, "d/M/yyyy", arSA, DateTimeStyles.None, out tmp))
+        {
+            fromTmp = tmp;
+        }
+        if (DateTime.TryParseExact(txtTo.Text, "d/M/yyyy", arSA, DateTimeStyles.None, out tmp))
+        {
+            toTmp = tmp;
+        }
+        string lang = ddlLang.SelectedValue.Equals("-1") ? "" : ddlLang.SelectedValue;
+        SearchLibrary(txtTitle.Text, fromTmp, toTmp, lang, ddlType.SelectedValue);
+    }
+
+    protected void ddlLang_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        DateTime? fromTmp = null, toTmp = null;
+        DateTime tmp;
+        CultureInfo arSA = CultureInfo.CreateSpecificCulture("ar-SA");
+        if (DateTime.TryParseExact(txtFrom.Text, "d/M/yyyy", arSA, DateTimeStyles.None, out tmp))
+        {
+            fromTmp = tmp;
+        }
+        if (DateTime.TryParseExact(txtTo.Text, "d/M/yyyy", arSA, DateTimeStyles.None, out tmp))
+        {
+            toTmp = tmp;
+        }
+        string lang = ddlLang.SelectedValue.Equals("-1") ? "" : ddlLang.SelectedValue;
+        SearchLibrary(txtTitle.Text, fromTmp, toTmp, lang, ddlType.SelectedValue);
+    }
 }

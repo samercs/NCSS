@@ -37,11 +37,14 @@ public partial class Admin_PublicationsOp : System.Web.UI.Page
         db.AddParameter("@id", Request.QueryString["id"]);
         System.Data.DataSet ds = db.ExecuteDataSet("select * from " + tablename + " where id=@id" + ";" + "");
         txtTitle.Text = ds.Tables[0].Rows[0]["title"].ToString();
+        txtWriter.Text = ds.Tables[0].Rows[0]["Writer"].ToString();
         txtPrev.Text = ds.Tables[0].Rows[0]["prev"].ToString();
         txtTxt.Text = ds.Tables[0].Rows[0]["txt"].ToString();
         txtAddDate.Text = _dates.GregToHijri(DateTime.Parse(ds.Tables[0].Rows[0]["AddDate"].ToString()).ToString("dd/MM/yyyy"), "dd/MM/yyyy");
         ddlLang.SelectedValue = ds.Tables[0].Rows[0]["lang"].ToString();
         ViewState["img"] = ds.Tables[0].Rows[0]["img"].ToString();
+        ViewState["img2"] = ds.Tables[0].Rows[0]["img2"].ToString();
+        ViewState["url"] = ds.Tables[0].Rows[0]["url"].ToString();
 
 
 
@@ -50,12 +53,28 @@ public partial class Admin_PublicationsOp : System.Web.UI.Page
     {
         if (Request.QueryString["Op"].Equals("Add") && !fileImg.HasFile)
         {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "WriteMsg", "<SCRIPT LANGUAGE=\"JavaScript\">alertify.error(\"الرجاء اختيار الغلاف.\")</SCRIPT>", false);
+            return;
+        }
+        if (Request.QueryString["Op"].Equals("Add") && !fileImg2.HasFile)
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "WriteMsg", "<SCRIPT LANGUAGE=\"JavaScript\">alertify.error(\"الرجاء اختيار الفهرس.\")</SCRIPT>", false);
+            return;
+        }
+        if (Request.QueryString["Op"].Equals("Add") && !fileUrl.HasFile)
+        {
             ScriptManager.RegisterStartupScript(this, this.GetType(), "WriteMsg", "<SCRIPT LANGUAGE=\"JavaScript\">alertify.error(\"الرجاء اختيار الملف.\")</SCRIPT>", false);
             return;
         }
+        
         if (string.IsNullOrEmpty(txtTitle.Text))
         {
             ScriptManager.RegisterStartupScript(this, this.GetType(), "WriteMsg", "<SCRIPT LANGUAGE=\"JavaScript\">alertify.error(\"الرجاء اختيار العنوان.\")</SCRIPT>", false);
+            return;
+        }
+        if (string.IsNullOrEmpty(txtWriter.Text))
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "WriteMsg", "<SCRIPT LANGUAGE=\"JavaScript\">alertify.error(\"الرجاء اختيار المؤلف.\")</SCRIPT>", false);
             return;
         }
         if (string.IsNullOrWhiteSpace(txtPrev.Text))
@@ -101,14 +120,67 @@ public partial class Admin_PublicationsOp : System.Web.UI.Page
             }
         }
 
+        if (fileImg2.HasFile)
+        {
+
+            if (!Tools.IsImage(fileImg2.PostedFile.FileName))
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "WriteMsg", "<SCRIPT LANGUAGE=\"JavaScript\">alertify.error(\"الرجاء التأكد من الفهرس\")</SCRIPT>", false);
+                return;
+            }
+            try
+            {
+                if (ViewState["img2"] != null)
+                {
+                    System.IO.File.Delete(Server.MapPath("~/Images/Publications/" + ViewState["img2"].ToString()));
+                }
+                ViewState["img2"] = DateTime.Now.Ticks + System.IO.Path.GetFileName(fileImg2.PostedFile.FileName);
+
+                fileImg2.PostedFile.SaveAs(Server.MapPath("~/images/Publications/" + ViewState["img2"].ToString()));
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "WriteMsg", "<SCRIPT LANGUAGE=\"JavaScript\">alertify.error(\"Error : " + ex.Message + "\")</SCRIPT>", false);
+                return;
+            }
+        }
+
+        if (fileUrl.HasFile)
+        {
+
+            if (!Tools.IsDoc(fileUrl.PostedFile.FileName))
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "WriteMsg", "<SCRIPT LANGUAGE=\"JavaScript\">alertify.error(\"الرجاء التأكد من الملف\")</SCRIPT>", false);
+                return;
+            }
+            try
+            {
+                if (ViewState["url"] != null)
+                {
+                    System.IO.File.Delete(Server.MapPath("~/Images/Publications/" + ViewState["url"].ToString()));
+                }
+                ViewState["url"] = DateTime.Now.Ticks + System.IO.Path.GetFileName(fileUrl.PostedFile.FileName);
+
+                fileUrl.PostedFile.SaveAs(Server.MapPath("~/images/Publications/" + ViewState["url"].ToString()));
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "WriteMsg", "<SCRIPT LANGUAGE=\"JavaScript\">alertify.error(\"Error : " + ex.Message + "\")</SCRIPT>", false);
+                return;
+            }
+        }
+
 
 
         db.AddParameter("@title", txtTitle.Text);
+        db.AddParameter("@writer", txtWriter.Text);
         db.AddParameter("@prev", txtPrev.Text);
         db.AddParameter("@txt", txtTxt.Text);
         db.AddParameter("@lang", ddlLang.SelectedValue);
         db.AddParameter("@adddate", tmp);
         db.AddParameter("@img", ViewState["img"].ToString());
+        db.AddParameter("@img2", ViewState["img2"].ToString());
+        db.AddParameter("@url", ViewState["url"].ToString());
 
 
 
@@ -117,7 +189,7 @@ public partial class Admin_PublicationsOp : System.Web.UI.Page
             try
             {
                 db.AddParameter("@id", Request.QueryString["id"]);
-                db.ExecuteNonQuery("Update " + tablename + " Set title=@title,prev=@prev,txt=@txt,img=@img,lang=@lang,AddDate=@AddDate where Id=@id");
+                db.ExecuteNonQuery("Update " + tablename + " Set writer=@writer,title=@title,prev=@prev,txt=@txt,img=@img,img2=@img2,url=@url,lang=@lang,AddDate=@AddDate where Id=@id");
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "WriteMsg", "alertify.alert('تم التعديل ','تم التعديل بنجاح').set('onok', function(closeEvent){ location.href='" + listpage+ "'; } ) ;", true);
 
                 
@@ -132,7 +204,7 @@ public partial class Admin_PublicationsOp : System.Web.UI.Page
         }
         else if (Request.QueryString["Op"] == "Add")
         {
-            db.ExecuteNonQuery("Insert into " + tablename + "(Title,prev,txt,img,lang,AddDate) Values(@Title,@prev,@txt,@img,@lang,@AddDate)");
+            db.ExecuteNonQuery("Insert into " + tablename + "(Title,writer,prev,txt,img,img2,url,lang,AddDate) Values(@Title,@Writer,@prev,@txt,@img,@img2,@url,@lang,@AddDate)");
             ScriptManager.RegisterStartupScript(this, this.GetType(), "WriteMsg", "alertify.alert('تم الاضافة ','تم الاضافة بنجاح').set('onok', function(closeEvent){ location.href='" + listpage + "'; } );", true);
         }
     }

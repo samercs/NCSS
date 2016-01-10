@@ -65,6 +65,14 @@
                 </tr>
                 <tr>
                     <td>
+                        <asp:Label ID="Label6" runat="server" Text="المؤلف" CssClass="label_xblack"></asp:Label></td>
+                    <td>
+                        <asp:TextBox ID="txtWriter" ValidationGroup="Option3" CssClass="txt1" runat="server"></asp:TextBox>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
                         <asp:Label ID="Label5" runat="server" Text="ملخص" CssClass="label_xblack"></asp:Label></td>
                     <td>
                         <asp:TextBox ID="txtPrev" TextMode="MultiLine" ValidationGroup="Option3" CssClass="txt1" runat="server"></asp:TextBox>
@@ -93,7 +101,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <asp:Label ID="Label3" runat="server" Text="تاريخ الاضافة" CssClass="label_xblack"></asp:Label></td>
+                        <asp:Label ID="Label3" runat="server" Text="تاريخ الاصدار" CssClass="label_xblack"></asp:Label></td>
                     <td>
                         <uc1:hijriCalender runat="server" Class="txtCal" ValidationGroup="Option3" ID="txtAddDate" />
                     </td>
@@ -101,9 +109,25 @@
                 </tr>
                 <tr>
                     <td>
-                        <asp:Label ID="Label10" runat="server" Text="الصورة" CssClass="label_xblack"></asp:Label></td>
+                        <asp:Label ID="Label7" runat="server" Text="الملف" CssClass="label_xblack"></asp:Label></td>
+                    <td>
+                        <asp:FileUpload ID="fileUrl" CssClass="txt1" ValidationGroup="Option3" runat="server" />
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:Label ID="Label10" runat="server" Text="الغلاف" CssClass="label_xblack"></asp:Label></td>
                     <td>
                         <asp:FileUpload ID="fileImg" CssClass="txt1" ValidationGroup="Option3" runat="server" />
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:Label ID="Label4" runat="server" Text="الفهرس" CssClass="label_xblack"></asp:Label></td>
+                    <td>
+                        <asp:FileUpload ID="fileImg2" CssClass="txt1" ValidationGroup="Option3" runat="server" />
                     </td>
                     <td></td>
                 </tr>

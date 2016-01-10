@@ -34,11 +34,11 @@
                                 <tr>
                                     <td>
                                         <p><%=new Lang().getByKey("Title") %></p>
-                                        <asp:TextBox ID="txtTitle" CssClass="inTextBox" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="txtTitle" CssClass="inTextBox" onfocus="this.value=this.value;" onkeyup="RefreshUpdatePanel();"  OnTextChanged="txtTitle_TextChanged" runat="server"></asp:TextBox>
                                     </td>
                                     <td>
                                         <p><%=new Lang().getByKey("Type") %></p>
-                                        <asp:DropDownList CssClass="inTextBox" ID="ddlType" runat="server">
+                                        <asp:DropDownList CssClass="inTextBox" AutoPostBack="true"  OnSelectedIndexChanged="ddlType_SelectedIndexChanged" ID="ddlType" runat="server">
                                         </asp:DropDownList>
                                     </td>
                                     <td>
@@ -51,7 +51,7 @@
                                     </td>
                                     <td>
                                         <p><%=new Lang().getByKey("Language") %></p>
-                                        <asp:DropDownList CssClass="inTextBox" ID="ddlLang" runat="server">
+                                        <asp:DropDownList CssClass="inTextBox" AutoPostBack="true" OnSelectedIndexChanged="ddlLang_SelectedIndexChanged" ID="ddlLang" runat="server">
                                         </asp:DropDownList>
                                     </td>
                                     <td>
@@ -114,36 +114,75 @@
 
     
     <script type="text/javascript">
-        
-        $(function () {
-            initPage();
-            
-
-        });
-
         var prm = Sys.WebForms.PageRequestManager.getInstance();
-        if (prm != null) {
-            prm.add_endRequest(function (sender, e) {
-                if (sender._postBackSettings.panelsToUpdate != null) {
-                    initPage();
-                }
+
+        prm.add_endRequest(function () {
+            $(function () {
+                initPage();
+
+
             });
-        };
 
-        function initPage() {
-            
+            var prm = Sys.WebForms.PageRequestManager.getInstance();
+            if (prm != null) {
+                prm.add_endRequest(function (sender, e) {
+                    if (sender._postBackSettings.panelsToUpdate != null) {
+                        initPage();
+                    }
+                });
+            };
 
-            $("#<%=txtFrom.ClientID%>_TextBox1").calendarsPicker($.extend(
-            { calendar: $.calendars.instance('islamic', 'ar'), dateFormat: "dd/mm/yyyy", showTrigger: '<button type="button" class="trigger"><i class="fa fa-calendar"></i></button>' },
-            $.calendarsPicker.regionalOptions['ar']));
+            function initPage() {
+
+
+                $("#<%=txtFrom.ClientID%>_TextBox1").calendarsPicker($.extend(
+                { calendar: $.calendars.instance('islamic', 'ar'), dateFormat: "dd/mm/yyyy", showTrigger: '<button type="button" class="trigger"><i class="fa fa-calendar"></i></button>' },
+                $.calendarsPicker.regionalOptions['ar']));
 
 
 
-            $("#<%=txtTo.ClientID%>_TextBox1").calendarsPicker($.extend(
-            { calendar: $.calendars.instance('islamic', 'ar'), dateFormat: "dd/mm/yyyy", showTrigger: '<button type="button" class="trigger"><i class="fa fa-calendar"></i></button>' },
-            $.calendarsPicker.regionalOptions['ar']));
+                $("#<%=txtTo.ClientID%>_TextBox1").calendarsPicker($.extend(
+                { calendar: $.calendars.instance('islamic', 'ar'), dateFormat: "dd/mm/yyyy", showTrigger: '<button type="button" class="trigger"><i class="fa fa-calendar"></i></button>' },
+                $.calendarsPicker.regionalOptions['ar']));
+            }
+
+            function RefreshUpdatePanel() {
+                __doPostBack('<%= UpdatePanel1.ClientID %>', ''); document.getElementById('<%= txtTitle.ClientID %>').focus();
+            };
         }
+        );
+          $(function () {
+                initPage();
 
+
+            });
+
+            var prm = Sys.WebForms.PageRequestManager.getInstance();
+            if (prm != null) {
+                prm.add_endRequest(function (sender, e) {
+                    if (sender._postBackSettings.panelsToUpdate != null) {
+                        initPage();
+                    }
+                });
+            };
+
+            function initPage() {
+
+
+                $("#<%=txtFrom.ClientID%>_TextBox1").calendarsPicker($.extend(
+                { calendar: $.calendars.instance('islamic', 'ar'), dateFormat: "dd/mm/yyyy", showTrigger: '<button type="button" class="trigger"><i class="fa fa-calendar"></i></button>' },
+                $.calendarsPicker.regionalOptions['ar']));
+
+
+
+                $("#<%=txtTo.ClientID%>_TextBox1").calendarsPicker($.extend(
+                { calendar: $.calendars.instance('islamic', 'ar'), dateFormat: "dd/mm/yyyy", showTrigger: '<button type="button" class="trigger"><i class="fa fa-calendar"></i></button>' },
+                $.calendarsPicker.regionalOptions['ar']));
+            }
+
+            function RefreshUpdatePanel() {
+                __doPostBack('<%= UpdatePanel1.ClientID %>', ''); document.getElementById('<%= txtTitle.ClientID %>').focus();
+            };
     </script>
 
 </asp:Content>

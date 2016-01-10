@@ -33,6 +33,10 @@
                             <p>
                                 <%=new Lang().getByKey("Major") %> : <span class="label label-default"><%#Eval("Major") %></span>
                             </p>
+                                 </p>
+                               <p>
+                                <%=new Lang().getByKey("Qualification") %> : <span class="label label-default"><%#Eval("Qualification") %></span>
+                            </p>
                             <p>
                                 <%=new Lang().getByKey("Degree") %> : <span class="label label-default"><%#Eval("Level") %></span>
                             </p>
@@ -48,7 +52,15 @@
                         </div>
                         <div class="fl">
                             <img class="ResearcherImagein" src="/images/Researchers/<%#Eval("img") %>" />
+                             <div class="clearfix"></div>
+                           <div class="fl ResearcherImagein" visible="false" runat="server" id="ReLoginCon" style="border:unset;border-radius:unset;text-align:center;">
+                                <asp:LinkButton ID="btnEditInfo" OnClick="btnEditInfo_Click" style="min-width:100%;" CssClass="btn btn-primary btn-md" runat="server"> <%=new Lang().getByKey("EditReInfo") %></asp:LinkButton>
+                            <div class="clearfix"><br /></div>
+                            <asp:LinkButton ID="btnAddResearch" OnClick="btnAddResearch_Click" style="min-width:100%;" CssClass="btn btn-primary btn-md" runat="server"> <%=new Lang().getByKey("AddNewResearch") %></asp:LinkButton>
+                            <div class="clearfix"><br /></div>
+                               <a href="Relogout.aspx?ID="+<%=Request.QueryString["id"] %> style="min-width:100%;" class="btn btn-primary btn-md"> <%=new Lang().getByKey("ReLogout") %></a>
                             <div class="clearfix"></div>
+                           </div>
                             <div style="display: none;" class="AllReIcons">
                                 <a target="_blank" href="<%#Eval("twitter") %>">
                                     <img src="/images/ReTw.png" class="ReIcons hvr-buzz-out" />
@@ -96,6 +108,8 @@
                         <td><%=new Lang().getByKey("Title") %></td>
                         <td><%=new Lang().getByKey("PublishDate") %></td>
                         <td><%=new Lang().getByKey("Language") %></td>
+                        <td runat="server" visible="false" id="tdEdit"><%=new Lang().getByKey("Edit") %></td>
+                         <td runat="server" visible="false" id="tdDel"><%=new Lang().getByKey("Delete") %></td>
                         <td><%=new Lang().getByKey("Download") %></td>
                     </tr>
 
@@ -105,7 +119,9 @@
                                 <td><%#Eval("title") %></td>
                                 <td style="direction: rtl"><%#new Dates().GregToHijri(Eval("PublishDate","{0:dd/MM/yyyy}"),"dd/MMM/yyyy") %></td>
                                 <td><%#Eval("lang").ToString().Equals("1") ? new Lang().getByKey("English") : new Lang().getByKey("Arabic2") %></td>
-                                <td class="DownloadBtn"><a href="/images/Research/<%#Eval("file") %>" download="<%#Eval("file") %>"><img src="images/download.png" width="25"/></a></td>
+                                  <td runat="server" id="tdEdit2" visible="false" class="DownloadBtn"><a href="<%#"AddResearchForm.aspx?op=Edit&rid="+Eval("id") %>"><%=new Lang().getByKey("Edit") %></a></td>
+                                 <td runat="server" id="tdDel2" visible="false" class="DownloadBtn"><asp:LinkButton ID="btnDel" OnCommand="btnDel_Command" CommandArgument='<%#Eval("id") %>' runat="server">X</asp:LinkButton></td>
+                                 <td class="DownloadBtn"><a href="/images/Research/<%#Eval("file") %>" download="<%#Eval("file") %>"><img src="images/download.png" width="25"/></a></td>
                             </tr>
                         </ItemTemplate>
                     </asp:ListView>
