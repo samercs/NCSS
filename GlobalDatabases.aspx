@@ -23,7 +23,7 @@
 
             <div class="space"></div>
             <div class="container   ">
-                <h4 class="inTitles"><%=new Lang().getByKey("GlobalDatabases") %> > <a>
+                <h4 class="inTitles"><%=new Lang().getByKey("GlobalDatabases") %> <a>
                     <asp:Label ID="lblcatname" runat="server" Text=""></asp:Label></a></h4>
                 <br />
 
@@ -58,7 +58,7 @@
                             <tr class="TableDetails1">
                                 <td style="min-width: 150px;"><%#Eval("Title") %></td>
                                 <td><%#Eval("txt") %></td>
-                                <td style="min-width: 150px;" class="DownloadBtn"><a href="<%#Eval("Url") %>"><%=new Lang().getByKey("Explore") %></a></td>
+                                <td style="min-width: 150px;" class="DownloadBtn"><a target="_blank" href="<%#Eval("Url") %>"><%=new Lang().getByKey("Explore") %></a></td>
                             </tr>
                         </ItemTemplate>
                        
