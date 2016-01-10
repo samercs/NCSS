@@ -1331,3 +1331,24 @@ inTextBox3 {
     .checkbox input[type=checkbox], .checkbox-inline input[type=checkbox], .radio input[type=radio], .radio-inline input[type=radio] {
      margin-left: 0px !important;
 }
+
+    .linkList {
+    border: solid 1px #ccc ;
+    padding: 2px 3px;
+    width: 35px;
+    margin-left: 1px;
+}
+.linkList>img {
+    width: 15px;
+    height: 15px;
+}
+.linkList>div {
+    font-size: 8px !important;
+    height: 10px;
+    overflow: hidden;
+}
+.linkList:hover {
+    border: solid 2px #555;
+    padding: 1px 2px;
+    
+}

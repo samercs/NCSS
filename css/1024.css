@@ -2144,3 +2144,15 @@ header .container{ position :relative;}
 .clear {
     clear: both;
 }
+
+.linkList {
+    border: solid 1px #ccc;
+    padding: 5px 10px;
+    width: 120px;
+    margin: 2px;
+}
+.linkList:hover {
+    border: solid 2px #555;
+    padding: 4px 9px;
+    
+}

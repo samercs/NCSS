@@ -1379,3 +1379,24 @@ inTextBox3 {
 .clear {
     clear: both;
 }
+
+.linkList {
+    border: solid 1px #ccc ;
+    padding: 2px 3px;
+    width: 35px;
+    margin-left: 1px;
+}
+.linkList>img {
+    width: 15px;
+    height: 15px;
+}
+.linkList>div {
+    font-size: 8px !important;
+    height: 10px;
+    overflow: hidden;
+}
+.linkList:hover {
+    border: solid 2px #555;
+    padding: 1px 2px;
+    
+}
