@@ -1023,16 +1023,19 @@ inTextBox3 {
 
 
 .singlePub {
-    height: 25em;
+    
     width: 100%;
     margin-bottom: 2em;
 }
 
     .singlePub img {
-        width: 100%;
-        height: 12em;
+        width: 80%;
+        margin: 10px auto;
+        height: 100%;
         border: 1px solid #3C8AC9;
         border-radius: 15px;
+        display: block;
+        float: none;
     }
 
     .singlePub h4 {
@@ -1351,4 +1354,8 @@ inTextBox3 {
 }
 .checkbox label, .radio label {
     margin-right: 20px !important;
+}
+
+.clear {
+    clear: both;
 }

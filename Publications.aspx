@@ -15,6 +15,7 @@
                         <%#Eval("prev") %> 
                         <a href="/PublicationsDetails.aspx?id=<%#Eval("id") %>"><%=new Lang().getByKey("Details") %></a>
                     </div>
+                    <div class="clear"></div>
                 </ItemTemplate>
             </asp:ListView>
 

@@ -1214,14 +1214,17 @@ header .container{ position :relative;}
 }
 
     .singlePub img {
-        width: 100%;
-        height: 12em;
+        width: 40%;
+        float: left;
+        height: 100%;
+        margin-right: 15px;
         border: 1px solid #3C8AC9;
         border-radius: 15px;
     }
 
     .singlePub h4 {
         font-weight: bold;
+        padding-top: 15px;
     }
 
     .singlePub p {
