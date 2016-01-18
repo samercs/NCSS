@@ -23,7 +23,7 @@
 
             <div class="space"></div>
             <div class="container   ">
-                <h4 class="inTitles"><%=new Lang().getByKey("Library") %> > <a>
+                <h4 class="inTitles"><%=new Lang().getByKey("Library") %><a>
                     <asp:Label ID="lblcatname" runat="server" Text=""></asp:Label></a></h4>
                 <br />
 

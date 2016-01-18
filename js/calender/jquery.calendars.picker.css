@@ -49,7 +49,7 @@
 	font-weight: bold;
 }
 .calendars-ctrl {
-	background-color: #600;
+	background-color: #87BF6C;color:#fff;
 }
 .calendars-cmd {
 	width: 30%;
@@ -192,18 +192,16 @@ button.calendars-cmd {
 	background-color: #ddd;
 }
 .calendars-month td .calendars-today {
-	background-color: #f0c0c0;
+	background-color: #87BF6C;color#fff;
 }
 .calendars-month td .calendars-highlight {
-	background-color: #f08080;
+	background-color: #87BF6C;color:#fff;
 }
 .calendars-month td .calendars-selected {
-	background-color: #777;
-	color: #fff;
+	background-color: #87BF6C;color:#fff;
 }
 .calendars-month th.calendars-week {
-	background-color: #777;
-	color: #fff;
+	background-color: #87BF6C;color:#fff;
 }
 .calendars-status {
 	clear: both;

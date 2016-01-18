@@ -7076,3 +7076,4 @@ button.close {
         display: none !important;
     }
 }
+.carousel-control.right,.carousel-control.left{display: none !important;}

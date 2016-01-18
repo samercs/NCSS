@@ -1,4 +1,10 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="Header.ascx.cs" Inherits="controls_Header" %>
+
+
+<div class="betaVersion">
+    <%=new Lang().getByKey("BetaVersion") %>
+</div>
+
 <header>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
@@ -110,6 +116,9 @@
 
 
                             <li class="Hide"><a href="/Careers.aspx"><%=new Lang().getByKey("Careers") %></a></li>
+                                      <li class="Hide"><a href="/RelatedParties.aspx"><%= new Lang().getByKey("RelatedParties") %></a></li>
+                <li class="Hide"><a href="/GlobalDatabases.aspx"><%= new Lang().getByKey("GlobalDatabases") %></a></li>
+                <li class="Hide"><a href="/SpecializedDatabases.aspx"><%= new Lang().getByKey("SpecializedDatabases") %></a></li>
                             <!--<li  class="Hide"><a data-toggle="modal" data-target="#login-modal"><%=new Lang().getByKey("SubscribeToOurMailingList") %></a></li>-->
                             <li class="Hide"><a href="#"><%=new Lang().getByKey("ArchivingSystem") %></a></li>
                             <li class="Hide"><a href="/Privacy.aspx"><%=new Lang().getByKey("PrivacyPolicy") %></a></li>

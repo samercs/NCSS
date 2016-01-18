@@ -63,8 +63,9 @@
                 <tr>
 
                     <td>
-                        <asp:LinkButton OnClick="LinkButton1_OnClick" CssClass="savebtn hvr-push" ID="LinkButton1" runat="server"><%=new Lang().getByKey("Send") %></asp:LinkButton>
+
                         <a class="savebtn2 hvr-push" href="/Default.aspx"><%=new Lang().getByKey("Cancel") %></a>
+                         <asp:LinkButton OnClick="LinkButton1_OnClick" CssClass="savebtn hvr-push" ID="LinkButton1" runat="server"><%=new Lang().getByKey("Send") %></asp:LinkButton>
                     </td>
                     <td class="lbl"></td>
                 </tr>

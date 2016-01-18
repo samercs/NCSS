@@ -52,42 +52,43 @@
 
     <div class="clearfix"></div>
     <div class="space"></div>
-    <div id="scdLine">
-        <h4><%=new Lang().getByKey("LatestResearches") %></h4>
-    </div>
-    <div id="ThdLine">
-        <h4><%= new Lang().getByKey("LatestPublications") %></h4>
-    </div>
-    <div class="container">
-        <div class="HomeRight">
-            <asp:Repeater ID="Repeater6" runat="server">
-                <ItemTemplate>
-                    <p class="ResearchLinks">
-                        <asp:HyperLink download='<%#Eval("file") %>' ID="HyperLink3" NavigateUrl='<%#Eval("File","~/images/Library/{0}") %>' runat="server"><%#Eval("Title") %></asp:HyperLink>
-                    </p>
-                </ItemTemplate>
-            </asp:Repeater>
+    <section style="display: none;">
+        <div id="scdLine">
+            <h4><%=new Lang().getByKey("LatestResearches") %></h4>
         </div>
-
-        <div id="ThdLineMobile">
+        <div id="ThdLine">
             <h4><%= new Lang().getByKey("LatestPublications") %></h4>
         </div>
-        <div class="MobileSpace"></div>
-        <div class="HomeLeft">
-            <asp:Repeater ID="Repeater4" runat="server">
-                <ItemTemplate>
-                    <asp:HyperLink NavigateUrl='<%#Eval("id","~/PublicationsDetails.aspx?id={0}") %>' ID="HyperLink2" runat="server">
-                        <div class="SingleNewsHome hvr-shadow ">
-                            <asp:Image ImageUrl='<%#Eval("img","~/images/Publications/{0}") %>' ID="Image1" runat="server" />
-                            <h5><%#Eval("title") %></h5>
-                            <%#Eval("prev") %>
-                        </div>
-                    </asp:HyperLink>
-                </ItemTemplate>
-            </asp:Repeater>
-        </div>
-    </div>
+        <div class="container">
+            <div class="HomeRight">
+                <asp:Repeater ID="Repeater6" runat="server">
+                    <ItemTemplate>
+                        <p class="ResearchLinks">
+                            <asp:HyperLink download='<%#Eval("file") %>' ID="HyperLink3" NavigateUrl='<%#Eval("File","~/images/Library/{0}") %>' runat="server"><%#Eval("Title") %></asp:HyperLink>
+                        </p>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </div>
 
+            <div id="ThdLineMobile">
+                <h4><%= new Lang().getByKey("LatestPublications") %></h4>
+            </div>
+            <div class="MobileSpace"></div>
+            <div class="HomeLeft">
+                <asp:Repeater ID="Repeater4" runat="server">
+                    <ItemTemplate>
+                        <asp:HyperLink NavigateUrl='<%#Eval("id","~/PublicationsDetails.aspx?id={0}") %>' ID="HyperLink2" runat="server">
+                            <div class="SingleNewsHome hvr-shadow ">
+                                <asp:Image ImageUrl='<%#Eval("img","~/images/Publications/{0}") %>' ID="Image1" runat="server" />
+                                <h5><%#Eval("title") %></h5>
+                                <%#Eval("prev") %>
+                            </div>
+                        </asp:HyperLink>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </div>
+        </div>
+    </section>
 
     <div class="clearfix"></div>
     <div class="space"></div>

@@ -26,8 +26,9 @@ public partial class ContactUs : UICaltureBase
             dt = db.ExecuteDataTable("select * from pages where pagekey=@key and lang=@lang");
             Repeater2.DataSource = dt;
             Repeater2.DataBind();
-            db.LoadDDL("Country",ref ddlCountry,lang.getByKey("Country"));
-            ddlTitle.Items.Add(new ListItem(lang.getByKey("Mr.")));
+            //db.LoadDDL("Country",ref ddlCountry,lang.getByKey("Country"));
+db.LoadDDL("Country", "name", "id", ref ddlCountry, lang.getByKey("Country"), "lang=" + lang.getCurrentLang(), "showOrder");            
+ddlTitle.Items.Add(new ListItem(lang.getByKey("Mr.")));
             ddlTitle.Items.Add(new ListItem(lang.getByKey("Miss.")));
             ddlTitle.Items.Add(new ListItem(lang.getByKey("Mrs.")));
         }

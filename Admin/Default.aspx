@@ -284,5 +284,16 @@
 
             </div>
         </a>
+          <a href="PressKitList.aspx">
+            <div class="item">
+                <div class="clear sp20"></div>
+                <i class="fa fa-newspaper-o fa-4x"></i>
+                <br />
+                <p>
+                 الملف الصحفي
+                </p>
+
+            </div>
+        </a>
      </div>
 </asp:Content>

@@ -21,7 +21,8 @@ public partial class ResearchersForm : UICaltureBase
             Repeater1.DataSource = dt;
             Repeater1.DataBind();
 
-            db.LoadDDL("Country", "name", "id", ref ddlCountry, lang.getByKey("Country"), "lang=" + lang.getCurrentLang(), "showOrder");
+           db.LoadDDL("Country", "name", "id", ref ddlCountry, lang.getByKey("Country"), "lang=" + lang.getCurrentLang(), "showOrder");
+//db.LoadDDL("Country",ref ddlCountry,lang.getByKey("Country"));
 
             ddlDegree.Items.Add(new ListItem(lang.getByKey("Degree"), "-1"));
             ddlDegree.Items.Add(new ListItem(lang.getByKey("BSc")));

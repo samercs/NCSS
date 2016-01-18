@@ -124,7 +124,7 @@
                     </asp:Repeater>
 
 
-                </div>
+                </div>  </div>
 
 
                 <div class="NewsbtnImg"></div>
