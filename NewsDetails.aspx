@@ -63,7 +63,7 @@
 
             </div>
 
-            <div class="LeftDetails">
+            <div class="LeftDetails hidden">
                 <h4><%=new Lang().getByKey("LatestPhenomenons") %></h4>
                 <div class="NewsArrow"></div>
 

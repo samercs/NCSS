@@ -27,11 +27,10 @@
         </div>
         <a href="http://archivingsystem.azurewebsites.net/login.aspx" target="_blank" class="SystemLogin  hvr-sweep-to-top"><%= new Lang().getByKey("Archivingsystem") %>
         </a>
-
+        <a href="../ResearchersLogin.aspx" target="_blank" class="SystemLogin  hvr-sweep-to-top"><%=new Lang().getByKey("MemberLogin") %>
+        </a>
         <div class="SocialMedia">
-            <div class="LoginIcon">
-                <a href="../ResearchersLogin.aspx"><%=new Lang().getByKey("MemberLogin") %></a>
-            </div>
+            
             <div class="SocialIcons hvr-sink">
                 <a target="_blank" href="https://twitter.com/NCSSKSA">
                     <img class="img-responsive" src="../images/Tw.png" />
@@ -52,7 +51,7 @@
                     <img class="img-responsive" src="../images/insagram.png" />
                 </a>
             </div>
-            
+
 
         </div>
     </div>
@@ -107,18 +106,19 @@
 
                             <li><a id="ExpertsLink" runat="server" href="/Experts.aspx"><%=new Lang().getByKey("Researchers") %></a></li>
 
-                            <li class="hidden"><a id="PhenomenonLink" runat="server" href="/Phenomenon.aspx"><%=new Lang().getByKey("Phenomenons") %></a></li>
+                            <li><a id="PhenomenonLink" runat="server" href="#"><%=new Lang().getByKey("Phenomenons") %></a></li>
+                            
                             <li><a id="EventLink" runat="server" href="/Events.aspx"><%=new Lang().getByKey("EventsActivities") %></a></li>
 
-                            <li class="hidden"><a id="PublicationLink" runat="server" href="/Publications.aspx"><%=new Lang().getByKey("Publications") %></a></li>
+                            <li><a id="PublicationLink" runat="server" href="/Publications.aspx"><%=new Lang().getByKey("Publications") %></a></li>
                             <li><a id="MediaCenterLink" runat="server" href="/MediaCenter.aspx"><%=new Lang().getByKey("MediaCenter") %></a></li>
                             <li><a id="ContactUsLink" runat="server" href="/ContactUs.aspx"><%=new Lang().getByKey("ContactUs") %></a></li>
 
 
                             <li class="Hide"><a href="/Careers.aspx"><%=new Lang().getByKey("Careers") %></a></li>
-                                      <li class="Hide"><a href="/RelatedParties.aspx"><%= new Lang().getByKey("RelatedParties") %></a></li>
-                <li class="Hide"><a href="/GlobalDatabases.aspx"><%= new Lang().getByKey("GlobalDatabases") %></a></li>
-                <li class="Hide"><a href="/SpecializedDatabases.aspx"><%= new Lang().getByKey("SpecializedDatabases") %></a></li>
+                            <li class="Hide"><a href="/RelatedParties.aspx"><%= new Lang().getByKey("RelatedParties") %></a></li>
+                            <li class="Hide"><a href="/GlobalDatabases.aspx"><%= new Lang().getByKey("GlobalDatabases") %></a></li>
+                            <li class="Hide"><a href="/SpecializedDatabases.aspx"><%= new Lang().getByKey("SpecializedDatabases") %></a></li>
                             <!--<li  class="Hide"><a data-toggle="modal" data-target="#login-modal"><%=new Lang().getByKey("SubscribeToOurMailingList") %></a></li>-->
                             <li class="Hide"><a href="#"><%=new Lang().getByKey("ArchivingSystem") %></a></li>
                             <li class="Hide"><a href="/Privacy.aspx"><%=new Lang().getByKey("PrivacyPolicy") %></a></li>
