@@ -106,11 +106,11 @@
 
                             <li><a id="ExpertsLink" runat="server" href="/Experts.aspx"><%=new Lang().getByKey("Researchers") %></a></li>
 
-                            <li><a id="PhenomenonLink" runat="server" href="#"><%=new Lang().getByKey("Phenomenons") %></a></li>
+                            <li><a id="PhenomenonLink" runat="server" href="/Default.aspx"><%=new Lang().getByKey("Phenomenons") %></a></li>
                             
                             <li><a id="EventLink" runat="server" href="/Events.aspx"><%=new Lang().getByKey("EventsActivities") %></a></li>
 
-                            <li><a id="PublicationLink" runat="server" href="/Publications.aspx"><%=new Lang().getByKey("Publications") %></a></li>
+                            <li><a id="PublicationLink" runat="server" href="/Default.aspx"><%=new Lang().getByKey("Publications") %></a></li>
                             <li><a id="MediaCenterLink" runat="server" href="/MediaCenter.aspx"><%=new Lang().getByKey("MediaCenter") %></a></li>
                             <li><a id="ContactUsLink" runat="server" href="/ContactUs.aspx"><%=new Lang().getByKey("ContactUs") %></a></li>
 
