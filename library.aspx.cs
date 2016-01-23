@@ -35,7 +35,14 @@ public partial class library : UICaltureBase
                 db.LoadDDL("ResearchType", "Title", ref ddlType, lang.getByKey("Type"));
             }
 
-            SearchLibrary("", null, null, "","-1");
+            SearchLibrary("", 0, 0, "","-1");
+
+            db.AddParameter("@key", "LibraryBox");
+            db.AddParameter("@lang", lang.getCurrentLang());
+            DataTable dt = db.ExecuteDataTable("select * from pages where pageKey=@key and lang=@lang");
+            Repeater2.DataSource = dt;
+            Repeater2.DataBind();
+
         }
     }
 
@@ -44,7 +51,7 @@ public partial class library : UICaltureBase
         btnSearch_OnClick(null, null);
     }
 
-    private void SearchLibrary(string title, DateTime? from, DateTime? to, string lang,string type)
+    private void SearchLibrary(string title, int from, int to, string lang,string type)
     {
         string searchSql = "";
         
@@ -70,7 +77,7 @@ public partial class library : UICaltureBase
             searchSql = "select * from Library where (1=1) ";
         }
 
-        if (!string.IsNullOrEmpty(title) || from.HasValue || to.HasValue || !string.IsNullOrEmpty(lang) || !type.Equals("-1"))
+        if (!string.IsNullOrEmpty(title) || from!=0 || to!=0 || !string.IsNullOrEmpty(lang) || !type.Equals("-1"))
         {
 
             if (!string.IsNullOrEmpty(title))
@@ -78,12 +85,12 @@ public partial class library : UICaltureBase
                 searchSql += " and (title like  '%' + @title + '%' or writer like  '%' + @title + '%') ";
                 db.AddParameter("@title", title);
             }
-            if (from.HasValue)
+            if (from!=0)
             {
                 searchSql += " and PublishDate >= @from ";
                 db.AddParameter("@from", from);
             }
-            if (to.HasValue)
+            if (to!=0)
             {
                 searchSql += " and PublishDate <= @to ";
                 db.AddParameter("@to", to);
@@ -112,14 +119,14 @@ public partial class library : UICaltureBase
 
     protected void btnSearch_OnClick(object sender, EventArgs e)
     {
-        DateTime? fromTmp = null, toTmp = null;
-        DateTime tmp;
-        CultureInfo arSA = CultureInfo.CreateSpecificCulture("ar-SA");
-        if (DateTime.TryParseExact(txtFrom.Text, "d/M/yyyy", arSA, DateTimeStyles.None, out tmp))
+        int fromTmp = 0, toTmp = 0;
+        int tmp;
+        
+        if (!string.IsNullOrEmpty(txtFrom.Text) && int.TryParse(txtFrom.Text,out tmp))
         {
             fromTmp = tmp;
         }
-        if (DateTime.TryParseExact(txtTo.Text, "d/M/yyyy", arSA, DateTimeStyles.None, out tmp))
+        if (!string.IsNullOrEmpty(txtTo.Text) && int.TryParse(txtTo.Text, out tmp))
         {
             toTmp = tmp;
         }
@@ -131,32 +138,50 @@ public partial class library : UICaltureBase
 
     protected void txtTitle_TextChanged(object sender, EventArgs e)
     {
-        DateTime? fromTmp = null, toTmp = null;
-        DateTime tmp;
-        CultureInfo arSA = CultureInfo.CreateSpecificCulture("ar-SA");
-        if (DateTime.TryParseExact(txtFrom.Text, "d/M/yyyy", arSA, DateTimeStyles.None, out tmp))
+        DoSearch();
+        txtTitle.Focus();
+    }
+
+    protected void txtFrom_TextChanged(object sender, EventArgs e)
+    {
+        DoSearch();
+        txtFrom.Focus();
+    }
+
+    protected void txtTo_TextChanged(object sender, EventArgs e)
+    {
+        DoSearch();
+        txtTo.Focus();
+    }
+
+    private void DoSearch()
+    {
+        int fromTmp = 0, toTmp = 0;
+        int tmp;
+
+        if (!string.IsNullOrEmpty(txtFrom.Text) && int.TryParse(txtFrom.Text, out tmp))
         {
             fromTmp = tmp;
         }
-        if (DateTime.TryParseExact(txtTo.Text, "d/M/yyyy", arSA, DateTimeStyles.None, out tmp))
+        if (!string.IsNullOrEmpty(txtTo.Text) && int.TryParse(txtTo.Text, out tmp))
         {
             toTmp = tmp;
         }
         string lang = ddlLang.SelectedValue.Equals("-1") ? "" : ddlLang.SelectedValue;
         SearchLibrary(txtTitle.Text, fromTmp, toTmp, lang, ddlType.SelectedValue);
-        txtTitle.Focus();
     }
+
+
 
     protected void ddlType_SelectedIndexChanged(object sender, EventArgs e)
     {
-        DateTime? fromTmp = null, toTmp = null;
-        DateTime tmp;
-        CultureInfo arSA = CultureInfo.CreateSpecificCulture("ar-SA");
-        if (DateTime.TryParseExact(txtFrom.Text, "d/M/yyyy", arSA, DateTimeStyles.None, out tmp))
+        int fromTmp = 0, toTmp = 0;
+        int tmp;
+        if (!string.IsNullOrEmpty(txtFrom.Text) && int.TryParse(txtFrom.Text, out tmp))
         {
             fromTmp = tmp;
         }
-        if (DateTime.TryParseExact(txtTo.Text, "d/M/yyyy", arSA, DateTimeStyles.None, out tmp))
+        if (!string.IsNullOrEmpty(txtTo.Text) && int.TryParse(txtTo.Text, out tmp))
         {
             toTmp = tmp;
         }
@@ -166,14 +191,13 @@ public partial class library : UICaltureBase
 
     protected void ddlLang_SelectedIndexChanged(object sender, EventArgs e)
     {
-        DateTime? fromTmp = null, toTmp = null;
-        DateTime tmp;
-        CultureInfo arSA = CultureInfo.CreateSpecificCulture("ar-SA");
-        if (DateTime.TryParseExact(txtFrom.Text, "d/M/yyyy", arSA, DateTimeStyles.None, out tmp))
+        int fromTmp = 0, toTmp = 0;
+        int tmp;
+        if (!string.IsNullOrEmpty(txtFrom.Text) && int.TryParse(txtFrom.Text, out tmp))
         {
             fromTmp = tmp;
         }
-        if (DateTime.TryParseExact(txtTo.Text, "d/M/yyyy", arSA, DateTimeStyles.None, out tmp))
+        if (!string.IsNullOrEmpty(txtTo.Text) && int.TryParse(txtTo.Text, out tmp))
         {
             toTmp = tmp;
         }

@@ -31,22 +31,22 @@
         </a>
         <div class="SocialMedia">
             
-            <div class="SocialIcons hvr-sink">
+            <div class="SocialIcons hvr-pulse">
                 <a target="_blank" href="https://twitter.com/NCSSKSA">
                     <img class="img-responsive" src="../images/Tw.png" />
                 </a>
             </div>
-            <div class="SocialIcons hvr-sink">
+            <div class="SocialIcons hvr-pulse">
                 <a target="_blank" href="https://www.facebook.com/NCSSKSA">
                     <img class="img-responsive" src="../images/Face.png" />
                 </a>
             </div>
-            <div class="SocialIcons hvr-sink">
+            <div class="SocialIcons hvr-pulse">
                 <a target="_blank" href="https://plus.google.com/u/0/108903152219506615695/posts">
                     <img class="img-responsive" src="../images/Gmail.png" />
                 </a>
             </div>
-            <div class="SocialIcons hvr-sink">
+            <div class="SocialIcons hvr-pulse">
                 <a target="_blank" href="https://instagram.com/ncssksa/">
                     <img class="img-responsive" src="../images/insagram.png" />
                 </a>
@@ -100,8 +100,13 @@
 
                             </li>
 
-                            <li>
-                                <a id="LibraryLink" runat="server" href="/library.aspx"><%=new Lang().getByKey("Library") %></a>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" id="LibraryLink" runat="server" href="#"><%=new Lang().getByKey("Library") %></a>
+                                <ul class="dropdown-menu arrow_box ">
+                                    <li><a href="/library.aspx"><%= new Lang().getByKey("SocailResearch") %></a></li>
+                                    <li><a href="/GlobalDatabases.aspx"><%= new Lang().getByKey("GlobalDatabases") %></a></li>
+                                    <li><a href="/SpecializedDatabases.aspx"><%= new Lang().getByKey("SpecializedDatabases") %></a></li>
+                                </ul>
                             </li>
 
                             <li><a id="ExpertsLink" runat="server" href="/Experts.aspx"><%=new Lang().getByKey("Researchers") %></a></li>

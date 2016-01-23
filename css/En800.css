@@ -250,12 +250,15 @@ nav {
     }
 
 
-
+.SocialMedia {
+        position: fixed;
+        right: 0;
+        top: 300px;
+        width: 1.5em;
+    }
 
 .SocialIcons {
-    margin-right: 0.3em;
-    float: left;
-    top: 0;
+   
     background-color: #0097B9;
     padding: 1.2em 0.3em 0.5em 0.3em;
     text-align: center;
@@ -275,11 +278,7 @@ nav {
         background-color: #4C3C38;
     }
 
-.SocialMedia {
-    position: absolute;
-    right: 6em;
-    top: 0;
-}
+
 
 .MenueBack {
     width: 100%;
@@ -1629,11 +1628,7 @@ header .container{ position :relative;}
             background-color: #4C3C38;
         }
 
-    .SocialMedia {
-        position: absolute;
-        right: 4em;
-        top: 0;
-    }
+   
 
 
     .SystemLogin {
@@ -1727,7 +1722,16 @@ header .container{ position :relative;}
             height: 1.5em;
         }
 
-
+.AddExpert2 {
+    float: right;
+    margin-right: 10px;
+    border-radius: 15px;
+    font-family: NewFont;
+    background-color: #A5CF90;
+    color: #fff;
+    text-align: left;
+    padding: 0.4em 0.5em;
+}
 
 
 

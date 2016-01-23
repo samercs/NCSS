@@ -45,7 +45,10 @@ public partial class Researcher : UICaltureBase
                 HtmlControl ReLoginCon = ri.FindControl("ReLoginCon") as HtmlControl;
                 if (Session["ReInfo"] == null)
                 {
-                    ReLoginCon.Visible = false; tdEdit.Visible = false; tdDel.Visible = false;
+                    ReLoginCon.Visible = false;
+                    tdEdit.Visible = false;
+                    tdDel.Visible = false;
+                    Panel1.Visible = false;
                 }
                 else
                 {
@@ -54,6 +57,7 @@ public partial class Researcher : UICaltureBase
                     {
                         ReLoginCon.Visible = true; tdEdit.Visible = true; tdDel.Visible = true;
                     }
+                    Panel1.Visible = true;
                 }
             }
             foreach (var ListItem in ListView1.Items)

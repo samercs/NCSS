@@ -18,7 +18,16 @@
                         <asp:TextBox CssClass="FormTextBox" ID="txtName" runat="server"></asp:TextBox></td>
                     <td class="lbl">*<%=new Lang().getByKey("Name") %></td>
                 </tr>
-
+                 <tr>
+                    <td class="txb">
+                        <asp:TextBox CssClass="FormTextBox" ID="txtPassword" TextMode="Password" runat="server"></asp:TextBox></td>
+                    <td class="lbl">*<%=new Lang().getByKey("Password") %></td>
+                </tr>
+                <tr>
+                    <td class="txb">
+                        <asp:TextBox CssClass="FormTextBox" ID="txtConfirmPass" TextMode="Password" runat="server"></asp:TextBox></td>
+                    <td class="lbl">*<%=new Lang().getByKey("ConfirmPass") %></td>
+                </tr>
                 <tr>
 
                     <td class="txb">
@@ -77,16 +86,7 @@
                         <asp:TextBox CssClass="FormTextBox" ID="txtEmail" runat="server"></asp:TextBox></td>
                     <td class="lbl">*<%=new Lang().getByKey("Email") %></td>
                 </tr>
-                    <tr>
-                    <td class="txb">
-                        <asp:TextBox CssClass="FormTextBox" ID="txtPassword" TextMode="Password" runat="server"></asp:TextBox></td>
-                    <td class="lbl">*<%=new Lang().getByKey("Password") %></td>
-                </tr>
-                <tr>
-                    <td class="txb">
-                        <asp:TextBox CssClass="FormTextBox" ID="txtConfirmPass" TextMode="Password" runat="server"></asp:TextBox></td>
-                    <td class="lbl">*<%=new Lang().getByKey("ConfirmPass") %></td>
-                </tr>
+               
                
 
                 <tr>
