@@ -16,7 +16,8 @@
 }
 
 
-
+.navbar-nav { width :85%;
+}
 .sharfloat {
     float: right;
     margin-left: 0.5em;
@@ -337,7 +338,7 @@ footer .container nav ul li a {
 
 
 footer .container nav ul {
-    width: 100%;
+    width: 80%;
     margin: 0 auto;
     left: 0;
     right: 0;
@@ -1447,7 +1448,7 @@ footer nav ul {
     }
 
     footer .container nav ul {
-        width: 62%;
+        width: 85%;
         margin: 0 auto;
         left: 0;
         right: 0;
