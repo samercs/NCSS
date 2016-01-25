@@ -75,11 +75,13 @@
                             <img class="ResearcherImagein" src="/images/Researchers/<%#Eval("img") %>" />
                             <div class="clearfix"></div>
 
-                            <a href="PrintResearcher.aspx?id=<%#Eval("id") %>" target="_blank" style="min-width: 100%;" class="btn btn-primary btn-md" > <%=new Lang().getByKey("Print") %></a>
-                            <div class="clearfix">
-                                <br />
-                            </div>
 
+                            <div class="fl ResearcherImagein"  style="border: none; text-align: center;">
+                                <a href="PrintResearcher.aspx?id=<%#Eval("id") %>" target="_blank" style="min-width: 100%;" class="btn btn-primary btn-md"><%=new Lang().getByKey("Print") %></a>
+                                <div class="clearfix">
+                                    <br />
+                                </div>
+                            </div>
                             <div class="fl ResearcherImagein" visible="false" runat="server" id="ReLoginCon" style="border: unset; border-radius: unset; text-align: center;">
                                 <asp:LinkButton ID="btnEditInfo" OnClick="btnEditInfo_Click" Style="min-width: 100%;" CssClass="btn btn-primary btn-md" runat="server"> <%=new Lang().getByKey("EditReInfo") %></asp:LinkButton>
                                 <div class="clearfix">
