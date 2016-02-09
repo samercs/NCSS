@@ -103,7 +103,7 @@
                     <td>
                         <asp:Label ID="Label4" runat="server" Text="تاريخ النشر" CssClass="label_xblack"></asp:Label></td>
                     <td>
-                        <uc1:hijriCalender  Class="txtCal" ValidationGroup="Option3" runat="server" ID="txtPublishDate" />
+                        <asp:TextBox ID="txtPublishDate" ValidationGroup="Option3" CssClass="txt1" runat="server"></asp:TextBox>
                     </td>
                     <td></td>
                 </tr>

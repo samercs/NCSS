@@ -70,7 +70,7 @@
                                 <%#new Dates().GregToHijri(Eval("AddDate","{0:dd/MM/yyyy}"),"dd/MMM/yyyy") %>
                             </td>
                             <td>
-                                <%#new Dates().GregToHijri(Eval("PublishDate","{0:dd/MM/yyyy}"),"dd/MMM/yyyy") %>
+                                <%#Eval("PublishDate") %>
                             </td>
                             <td>
                                 <asp:LinkButton CssClass="btnDelete" ID="btnDelete" OnCommand="btnDelete_Command" CommandName='<%#Eval("File") %>' CommandArgument='<%#Eval("id") %>' runat="server"><i class="fa fa-trash fs20px"></i> حذف</asp:LinkButton>

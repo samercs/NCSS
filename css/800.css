@@ -179,10 +179,12 @@ footer {
     display: none;
 }
 
-
+.navbar-nav { width :85%;
+}
 nav {
     font-family: 'NewFont';
     font-size: 0.8em;
+   width: 85%;
 }
 
 .caret {
@@ -332,7 +334,7 @@ nav ul li a {
 }
 
 footer .container nav ul {
-    width: 62%;
+    width: 87%;
     margin: 0 auto;
     left: 0;
     right: 0;
@@ -1468,7 +1470,7 @@ header .container {
         }
 
     footer .container nav ul {
-        width: 53%;
+        width: 75%;
         margin: 0 auto;
         left: 0;
         right: 0;
@@ -1478,6 +1480,7 @@ header .container {
     nav {
         font-family: 'NewFont';
         font-size: 0.52em;
+        width: 85%;
     }
 
     .caret {

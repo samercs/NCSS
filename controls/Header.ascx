@@ -27,8 +27,8 @@
         </div>
         <a href="http://archivingsystem.azurewebsites.net/login.aspx" target="_blank" class="SystemLogin  hvr-sweep-to-top"><%= new Lang().getByKey("Archivingsystem") %>
         </a>
-        <a href="../ResearchersLogin.aspx" target="_blank" class="SystemLogin  hvr-sweep-to-top"><%=new Lang().getByKey("MemberLogin") %>
-        </a>
+      <%--  <a href="../ResearchersLogin.aspx" target="_blank" class="SystemLogin  hvr-sweep-to-top"><%=new Lang().getByKey("MemberLogin") %>
+        </a>--%>
         <div class="SocialMedia">
             
             <div class="SocialIcons hvr-pulse">
@@ -78,7 +78,7 @@
                             <img src="../images/insagram.png" /></a>
                     </div>
                     <div class="collapse navbar-collapse" id="myNavbar" style="text-align:center;">
-                        <ul class="nav navbar-nav" style="width: 85%;">
+                        <ul class="nav navbar-nav">
 
                             <li><a id="HomeLink" runat="server" href="/Default.aspx"><%=new Lang().getByKey("Home") %></a></li>
 
